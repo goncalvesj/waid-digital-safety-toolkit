@@ -317,6 +317,420 @@ export const decisionTrees = {
       }
     }
   },
+  safetyQuestionnaire: {
+    id: "safety-questionnaire", 
+    title: "Digital Safety Questionnaire",
+    description: "Step-by-step assessment to provide tailored safety guidance",
+    startNode: "initial",
+    nodes: {
+      initial: {
+        question: "I'm here to help you with digital safety. What situation brings you here today?",
+        options: [
+          {
+            text: "I think someone is monitoring my digital activities",
+            next: "monitoring-concerns"
+          },
+          {
+            text: "My accounts or devices may have been compromised", 
+            next: "compromise-assessment"
+          },
+          {
+            text: "I'm experiencing online harassment or abuse",
+            next: "harassment-assessment"
+          },
+          {
+            text: "Someone shared intimate images/videos of me without consent",
+            next: "image-abuse-help"
+          },
+          {
+            text: "I want to learn how to stay safer online",
+            next: "prevention-guidance"
+          },
+          {
+            text: "I'm worried about my safety in a relationship",
+            next: "relationship-safety"
+          }
+        ]
+      },
+      "monitoring-concerns": {
+        question: "What makes you think someone might be monitoring your digital activities?",
+        options: [
+          {
+            text: "Someone knows things about my online activities they shouldn't",
+            next: "activity-knowledge"
+          },
+          {
+            text: "My partner/ex checks my phone or demands passwords",
+            next: "partner-monitoring"
+          },
+          {
+            text: "My device is acting strangely (slow, hot, battery drain)",
+            next: "device-symptoms"
+          },
+          {
+            text: "I found apps on my device I didn't install",
+            next: "unknown-apps"
+          },
+          {
+            text: "Someone seems to know where I've been",
+            next: "location-tracking"
+          }
+        ]
+      },
+      "activity-knowledge": {
+        question: "How specific is the information they know about your online activities?",
+        options: [
+          {
+            text: "They know specific websites I've visited",
+            next: "browsing-monitored"
+          },
+          {
+            text: "They know about my private messages or emails",
+            next: "communications-monitored"
+          },
+          {
+            text: "They know about my social media activity",
+            next: "social-monitored"
+          },
+          {
+            text: "They know general information about my online activities",
+            next: "general-monitoring"
+          }
+        ]
+      },
+      "browsing-monitored": {
+        guidance: {
+          title: "Your Browsing is Being Monitored",
+          content: "Someone having detailed knowledge of your browsing history indicates serious privacy violations. This could be through browser history checking, spyware, or network monitoring.",
+          immediateActions: [
+            "Use private/incognito browsing mode for all sensitive browsing",
+            "Clear your browser history regularly if safe to do so",
+            "Use a different device (friend's phone, public computer) for private research",
+            "Check your device for monitoring apps or spyware",
+            "Consider that your home WiFi network might be monitored"
+          ],
+          nextSteps: "Your safety is priority. Use our Device Security Checklist when you can access it safely. Consider reaching out to Women's Aid (1800 341 900) from a safe location for support."
+        }
+      },
+      "communications-monitored": {
+        guidance: {
+          title: "Your Messages and Emails Are Being Monitored",
+          content: "Access to your private communications is a serious violation. This could indicate compromised accounts, device monitoring, or someone having your passwords.",
+          immediateActions: [
+            "Change passwords on all email and messaging accounts when it's safe",
+            "Enable two-factor authentication on important accounts",
+            "Check for email forwarding rules you didn't create",
+            "Use a secure device to communicate with trusted people",
+            "Consider creating new accounts they don't know about"
+          ],
+          nextSteps: "This is serious monitoring. Follow our Email Security Checklist and Safe Communication guide when safe to do so. Reach out for professional support - Women's Aid 1800 341 900."
+        }
+      },
+      "compromise-assessment": {
+        question: "What signs of compromise have you noticed?",
+        options: [
+          {
+            text: "I can't log into my accounts - passwords seem changed",
+            next: "locked-out"
+          },
+          {
+            text: "Friends say they got messages from me I didn't send",
+            next: "unauthorized-messages"
+          },
+          {
+            text: "I see emails in my sent folder I didn't write",
+            next: "sent-folder-messages"
+          },
+          {
+            text: "My account settings have been changed",
+            next: "settings-changed"
+          },
+          {
+            text: "I'm getting security alerts about logins I didn't make",
+            next: "security-alerts"
+          }
+        ]
+      },
+      "locked-out": {
+        question: "Which accounts can't you access?",
+        options: [
+          {
+            text: "My email account",
+            next: "email-locked-out"
+          },
+          {
+            text: "Social media accounts (Facebook, Instagram, etc.)",
+            next: "social-locked-out"
+          },
+          {
+            text: "Multiple accounts across different services",
+            next: "multiple-locked-out"
+          },
+          {
+            text: "Banking or financial accounts",
+            next: "financial-locked-out"
+          }
+        ]
+      },
+      "email-locked-out": {
+        guidance: {
+          title: "Email Account Locked Out",
+          content: "Being locked out of your email is serious because email is often used to recover other accounts. Someone may have changed your password deliberately.",
+          immediateActions: [
+            "Try the 'Forgot Password' option using your phone number if available",
+            "Contact your email provider's support immediately",
+            "Check if you can access any backup email accounts",
+            "Secure any other accounts that don't use this email for recovery",
+            "Alert trusted contacts that your email may be compromised"
+          ],
+          nextSteps: "Email compromise affects all your other accounts. Use our Account Recovery Checklist and consider professional help if this was done deliberately by someone you know."
+        }
+      },
+      "harassment-assessment": {
+        question: "What type of online harassment are you experiencing?",
+        options: [
+          {
+            text: "Threatening or abusive messages",
+            next: "threatening-messages"
+          },
+          {
+            text: "Someone is impersonating me online",
+            next: "impersonation"
+          },
+          {
+            text: "My personal information was shared publicly",
+            next: "doxxing"
+          },
+          {
+            text: "Someone creates fake accounts to contact me",
+            next: "fake-accounts"
+          },
+          {
+            text: "Continuous harassment despite blocking them",
+            next: "persistent-harassment"
+          }
+        ]
+      },
+      "threatening-messages": {
+        question: "Where are you receiving these threatening messages?",
+        options: [
+          {
+            text: "Text messages to my phone",
+            next: "text-threats"
+          },
+          {
+            text: "Social media (Facebook, Instagram, Twitter, etc.)",
+            next: "social-threats"
+          },
+          {
+            text: "Email messages",
+            next: "email-threats"
+          },
+          {
+            text: "Multiple platforms",
+            next: "multi-platform-threats"
+          }
+        ]
+      },
+      "text-threats": {
+        guidance: {
+          title: "Threatening Text Messages",
+          content: "Threatening messages sent to your phone are serious and may constitute criminal harassment. Your safety is important.",
+          immediateActions: [
+            "Take screenshots of all threatening messages - include phone numbers and timestamps",
+            "Do NOT respond to the threats - any response can escalate the situation",
+            "Block the phone number immediately",
+            "Save the evidence in multiple safe places",
+            "If threats mention violence or harm, contact Gardaí immediately"
+          ],
+          nextSteps: "Document everything safely. Contact Women's Aid (1800 341 900) for support and guidance. If threats are serious, report to local Gardaí."
+        }
+      },
+      "image-abuse-help": {
+        question: "What happened with the images or videos?",
+        options: [
+          {
+            text: "They were shared on social media without my consent",
+            next: "social-image-sharing"
+          },
+          {
+            text: "They were sent to people I know",
+            next: "targeted-image-sharing"
+          },
+          {
+            text: "They were posted on websites",
+            next: "website-image-sharing"
+          },
+          {
+            text: "I'm being threatened that they will be shared",
+            next: "image-threats"
+          }
+        ]
+      },
+      "social-image-sharing": {
+        guidance: {
+          title: "Intimate Images Shared on Social Media",
+          content: "Sharing intimate images without consent is illegal in Ireland under the Harassment, Harmful Communications and Related Offences Act 2020. You have rights and options.",
+          immediateActions: [
+            "Screenshot the posts as evidence (include usernames, timestamps, URLs)",
+            "Report the content to the platform immediately - state it was shared without consent",
+            "Do NOT engage with or respond to the person who shared them",
+            "Contact hotline.ie for specialized support with image-based abuse",
+            "Consider reporting to An Garda Síochána - this is a criminal offence"
+          ],
+          nextSteps: "This is serious abuse. Contact Women's Aid (1800 341 900) for emotional support and hotline.ie for removal assistance. Keep all evidence safe."
+        }
+      },
+      "image-threats": {
+        guidance: {
+          title: "Threats to Share Intimate Images",
+          content: "Threatening to share intimate images is blackmail and a serious crime. You don't have to give in to these threats.",
+          immediateActions: [
+            "Screenshot all threats as evidence",
+            "Do NOT give in to any demands - this rarely stops the behavior",
+            "Block the person making threats on all platforms",
+            "Report the threats to Gardaí - blackmail is a serious crime",
+            "Reach out for support - you're not alone in this"
+          ],
+          nextSteps: "Contact Women's Aid (1800 341 900) immediately for support. Report to Gardaí as this is criminal blackmail. Document everything for evidence."
+        }
+      },
+      "prevention-guidance": {
+        question: "What area of digital safety would you like to focus on?",
+        options: [
+          {
+            text: "Making my social media accounts more private",
+            next: "social-privacy"
+          },
+          {
+            text: "Protecting my email and online accounts",
+            next: "account-security"
+          },
+          {
+            text: "Keeping my location information private",
+            next: "location-privacy"
+          },
+          {
+            text: "Learning about digital abuse warning signs",
+            next: "abuse-awareness"
+          },
+          {
+            text: "General device and internet safety",
+            next: "general-safety"
+          }
+        ]
+      },
+      "social-privacy": {
+        guidance: {
+          title: "Social Media Privacy Protection",
+          content: "Protecting your privacy on social media helps keep you safer and gives you more control over who can contact and find you.",
+          immediateActions: [
+            "Set all your profiles to private (friends/followers only)",
+            "Remove personal information like phone numbers, addresses, and workplace",
+            "Turn off location sharing and geotagging in all social apps",
+            "Review your friends/followers and remove people you don't trust",
+            "Check who can find you by email or phone number - limit this"
+          ],
+          nextSteps: "Complete our Social Media Privacy Checklist for detailed steps on each platform. Regular privacy reviews help keep you protected."
+        }
+      },
+      "relationship-safety": {
+        question: "What concerns you most about digital safety in your relationship?",
+        options: [
+          {
+            text: "My partner checks my phone or demands passwords",
+            next: "partner-control"
+          },
+          {
+            text: "They seem to know where I go and who I talk to",
+            next: "surveillance-concern"
+          },
+          {
+            text: "They control my access to technology or internet",
+            next: "tech-restriction"
+          },
+          {
+            text: "I'm planning to leave but worried about staying safe",
+            next: "leaving-safety"
+          },
+          {
+            text: "I want to communicate safely for help",
+            next: "safe-help-seeking"
+          }
+        ]
+      },
+      "partner-control": {
+        question: "How often does your partner check your devices or demand passwords?",
+        options: [
+          {
+            text: "Daily or constantly",
+            next: "constant-control"
+          },
+          {
+            text: "Several times a week",
+            next: "regular-control"
+          },
+          {
+            text: "When they're suspicious or angry",
+            next: "suspicious-control"
+          },
+          {
+            text: "They've demanded passwords to all my accounts",
+            next: "password-demands"
+          }
+        ]
+      },
+      "constant-control": {
+        guidance: {
+          title: "Constant Digital Monitoring",
+          content: "Constant checking of your devices is a serious form of abuse and control. You deserve privacy and respect in your relationship.",
+          immediateActions: [
+            "Know that this behavior is NOT normal or acceptable in healthy relationships",
+            "Use private browsing mode whenever possible",
+            "If safe, use trusted friends' devices for private communication",
+            "Learn about local support services when you can do so safely",
+            "Remember: you deserve privacy and this is a form of abuse"
+          ],
+          nextSteps: "Your safety comes first. When safe, contact Women's Aid (1800 341 900) for confidential support and safety planning guidance."
+        }
+      },
+      "leaving-safety": {
+        question: "What aspect of digital safety planning worries you most?",
+        options: [
+          {
+            text: "Communicating safely to get help",
+            next: "safe-communication-planning"
+          },
+          {
+            text: "Preventing them from tracking my location",
+            next: "location-safety-planning"
+          },
+          {
+            text: "Securing new accounts they don't know about",
+            next: "new-account-planning"
+          },
+          {
+            text: "Hiding my safety planning activities",
+            next: "concealing-planning"
+          }
+        ]
+      },
+      "safe-communication-planning": {
+        guidance: {
+          title: "Safe Communication for Help",
+          content: "Communicating safely while being monitored requires careful planning. There are ways to reach out for help securely.",
+          immediateActions: [
+            "Use trusted friends' devices when possible - not your own",
+            "Use public computers at libraries, community centers, or work",
+            "Memorize important helpline numbers: Women's Aid 1800 341 900",
+            "Use private/incognito browsing mode always",
+            "Clear all browsing history after use if you must use monitored devices"
+          ],
+          nextSteps: "Follow our Safe Communication Checklist when you can access it safely. Professional support is available 24/7."
+        }
+      }
+    }
+  },
   safetyAssessment: {
     id: "safety-assessment",
     title: "Digital Safety Assessment",
@@ -1436,6 +1850,63 @@ export const checklists = {
         id: "regular-monitoring",
         text: "Set up ongoing security monitoring",
         detail: "Account alerts, credit monitoring, regular security check-ups"
+      }
+    ]
+  },
+  imageAbuseResponse: {
+    id: "image-abuse-response",
+    title: "Image-Based Sexual Abuse Response Checklist",
+    description: "Steps to take if intimate images were shared without consent",
+    items: [
+      {
+        id: "document-evidence",
+        text: "Take screenshots of where your images appear",
+        detail: "Include URLs, usernames, timestamps - this is evidence you may need"
+      },
+      {
+        id: "report-hotline",
+        text: "Report to Intimate Image Abuse hotline at hotline.ie",
+        detail: "Specialized service for reporting non-consensual intimate image sharing"
+      },
+      {
+        id: "report-platforms",
+        text: "Report content to platforms immediately",
+        detail: "Use platform reporting tools, state images were uploaded without consent"
+      },
+      {
+        id: "no-engagement",
+        text: "Do not respond to or engage with the person who shared them",
+        detail: "Any response may encourage further abuse or provide them with satisfaction"
+      },
+      {
+        id: "contact-gardai",
+        text: "Consider reporting to An Garda Síochána",
+        detail: "This is a criminal offence under Irish law - you have the right to report"
+      },
+      {
+        id: "direct-removal",
+        text: "Request removal directly only if safe to do so",
+        detail: "Only contact the uploader if you feel safe doing so"
+      },
+      {
+        id: "support-services",
+        text: "Reach out for emotional support",
+        detail: "Contact Women's Aid (1800 341 900) for confidential support"
+      },
+      {
+        id: "block-accounts",
+        text: "Block all accounts associated with the abuse",
+        detail: "Block on all platforms where you have accounts"
+      },
+      {
+        id: "preserve-evidence",
+        text: "Keep all evidence safe",
+        detail: "Save screenshots and URLs securely in case needed for legal action"
+      },
+      {
+        id: "monitor-reposting",
+        text: "Monitor for reposting on other sites",
+        detail: "Set up Google alerts for your name to catch reposting attempts"
       }
     ]
   }

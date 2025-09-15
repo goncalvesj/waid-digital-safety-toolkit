@@ -10,6 +10,14 @@ interface MainMenuProps {
 export function MainMenu({ onSelectDecisionTree, onSelectChecklist }: MainMenuProps) {
   const decisionTrees = [
     {
+      id: "safetyQuestionnaire",
+      title: "Digital Safety Questionnaire",
+      description: "Step-by-step guidance for your specific situation",
+      icon: Shield,
+      color: "text-primary",
+      featured: true
+    },
+    {
       id: "emailCompromise",
       title: "Email Account Security",
       description: "Help with potentially compromised email accounts",
@@ -71,9 +79,9 @@ export function MainMenu({ onSelectDecisionTree, onSelectChecklist }: MainMenuPr
       icon: Heart
     },
     {
-      id: "completePrivacyAudit",
-      title: "Complete Privacy Audit",
-      description: "Comprehensive privacy review",
+      id: "imageAbuseResponse",
+      title: "Image Abuse Response",
+      description: "Steps for non-consensual image sharing",
       icon: Shield
     }
   ];
@@ -86,42 +94,80 @@ export function MainMenu({ onSelectDecisionTree, onSelectChecklist }: MainMenuPr
           <h1 className="text-2xl font-bold text-foreground">Digital Safety Toolkit</h1>
         </div>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Private, secure guidance for digital safety concerns. Nothing is stored on your device - all information stays private.
+          Get immediate, private guidance for digital safety concerns. Access relevant advice during crisis moments. All information stays completely private on your device.
         </p>
+        <div className="bg-accent/10 rounded-lg p-3 max-w-2xl mx-auto">
+          <p className="text-sm font-medium text-accent">
+            🔒 Crisis-Ready Tool | 📱 Mobile-First Design | 🚪 Quick Exit Available
+          </p>
+        </div>
       </div>
 
       <div className="space-y-6">
         <div>
           <h2 className="text-lg font-semibold mb-4 text-foreground">Get Personalized Help</h2>
-          <div className="grid gap-4 md:grid-cols-2">
-            {decisionTrees.map((tree) => {
+          <div className="space-y-4">
+            {/* Featured Questionnaire */}
+            {decisionTrees.filter(tree => tree.featured).map((tree) => {
               const IconComponent = tree.icon;
               return (
-                <Card key={tree.id} className="cursor-pointer hover:shadow-md transition-shadow">
+                <Card key={tree.id} className="cursor-pointer hover:shadow-lg transition-shadow border-primary/20 bg-gradient-to-r from-primary/5 to-primary/10">
                   <CardHeader>
                     <div className="flex items-start gap-3">
-                      <IconComponent size={24} className={tree.color} weight="fill" />
+                      <IconComponent size={28} className={tree.color} weight="fill" />
                       <div className="flex-1">
-                        <CardTitle className="text-base">{tree.title}</CardTitle>
+                        <CardTitle className="text-lg">{tree.title}</CardTitle>
                         <CardDescription className="text-sm mt-1">
                           {tree.description}
                         </CardDescription>
                       </div>
-                      <ArrowRight size={16} className="text-muted-foreground" />
+                      <ArrowRight size={18} className="text-muted-foreground" />
                     </div>
                   </CardHeader>
                   <CardContent className="pt-0">
                     <Button
                       onClick={() => onSelectDecisionTree(tree.id)}
                       className="w-full"
-                      variant="default"
+                      size="lg"
                     >
-                      Start Assessment
+                      Start Questionnaire
                     </Button>
                   </CardContent>
                 </Card>
               );
             })}
+            
+            {/* Other Decision Trees */}
+            <div className="grid gap-4 md:grid-cols-2">
+              {decisionTrees.filter(tree => !tree.featured).map((tree) => {
+                const IconComponent = tree.icon;
+                return (
+                  <Card key={tree.id} className="cursor-pointer hover:shadow-md transition-shadow">
+                    <CardHeader>
+                      <div className="flex items-start gap-3">
+                        <IconComponent size={24} className={tree.color} weight="fill" />
+                        <div className="flex-1">
+                          <CardTitle className="text-base">{tree.title}</CardTitle>
+                          <CardDescription className="text-sm mt-1">
+                            {tree.description}
+                          </CardDescription>
+                        </div>
+                        <ArrowRight size={16} className="text-muted-foreground" />
+                      </div>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <Button
+                        onClick={() => onSelectDecisionTree(tree.id)}
+                        className="w-full"
+                        variant="default"
+                      >
+                        Start Assessment
+                      </Button>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
           </div>
         </div>
 
@@ -164,6 +210,18 @@ export function MainMenu({ onSelectDecisionTree, onSelectChecklist }: MainMenuPr
               Use the Quick Exit button if you need to leave immediately.
             </p>
           </div>
+        </div>
+      </div>
+
+      <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-4 mt-4">
+        <div className="text-sm">
+          <p className="font-semibold text-destructive mb-2">24/7 Support Available</p>
+          <p className="text-foreground mb-2">
+            <strong>Women's Aid National Freephone Helpline:</strong> <span className="font-mono">1800 341 900</span>
+          </p>
+          <p className="text-muted-foreground text-xs">
+            Free, confidential support available 24 hours a day, 7 days a week. Call from any safe location.
+          </p>
         </div>
       </div>
     </div>
