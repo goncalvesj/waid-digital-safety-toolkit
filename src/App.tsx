@@ -3,15 +3,13 @@ import { Toaster } from "@/components/ui/sonner";
 import { QuickExitButton } from '@/components/QuickExitButton';
 import { MainMenu } from '@/components/MainMenu';
 import { DecisionTreeFlow } from '@/components/DecisionTreeFlow';
-import { ChecklistView } from '@/components/ChecklistView';
-import { decisionTrees, checklists } from '@/data/content';
+import { decisionTrees } from '@/data/content';
 
-type ViewType = 'menu' | 'decisionTree' | 'checklist';
+type ViewType = 'menu' | 'decisionTree';
 
 interface AppState {
   view: ViewType;
   selectedDecisionTree?: string;
-  selectedChecklist?: string;
 }
 
 function App() {
@@ -19,10 +17,6 @@ function App() {
 
   const handleSelectDecisionTree = (treeId: string) => {
     setState({ view: 'decisionTree', selectedDecisionTree: treeId });
-  };
-
-  const handleSelectChecklist = (checklistId: string) => {
-    setState({ view: 'checklist', selectedChecklist: checklistId });
   };
 
   const handleDecisionTreeComplete = (result: any) => {
@@ -49,22 +43,10 @@ function App() {
         }
         return null;
 
-      case 'checklist':
-        if (state.selectedChecklist && checklists[state.selectedChecklist as keyof typeof checklists]) {
-          return (
-            <ChecklistView
-              checklist={checklists[state.selectedChecklist as keyof typeof checklists]}
-              onBack={handleBackToMenu}
-            />
-          );
-        }
-        return null;
-
       default:
         return (
           <MainMenu
             onSelectDecisionTree={handleSelectDecisionTree}
-            onSelectChecklist={handleSelectChecklist}
           />
         );
     }

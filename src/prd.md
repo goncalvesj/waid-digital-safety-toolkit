@@ -48,16 +48,11 @@
 **Success criteria**: Immediate exit without leaving traces
 
 ### 3. Comprehensive Decision Trees
-**What it does**: Multiple specialized flows for email compromise, device safety, relationship safety, etc.
-**Why it matters**: Covers different types of digital abuse scenarios with specific guidance
-**Success criteria**: Users find guidance matching their specific situation
+**What it does**: Interactive guidance flows for relationship safety, social media safety, and general safety assessment
+**Why it matters**: Provides structured support for different types of digital safety concerns
+**Success criteria**: Users find relevant guidance paths for their specific situation
 
-### 4. Actionable Checklists
-**What it does**: Step-by-step action items for various digital safety scenarios
-**Why it matters**: Provides concrete, achievable steps users can follow
-**Success criteria**: Clear, actionable guidance that users can implement safely
-
-### 5. Privacy-First Architecture
+### 4. Privacy-First Architecture
 **What it does**: No data persistence, tracking, or external communications
 **Why it matters**: Ensures user safety and builds trust in sensitive situations
 **Success criteria**: Complete privacy with no digital traces left behind

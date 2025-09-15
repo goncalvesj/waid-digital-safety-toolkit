@@ -1,13 +1,12 @@
-import { Shield, Mail, Device, MapPin, ArrowRight, Heart, Users } from "@phosphor-icons/react";
+import { Shield, Heart, Users, ArrowRight } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface MainMenuProps {
   onSelectDecisionTree: (treeId: string) => void;
-  onSelectChecklist: (checklistId: string) => void;
 }
 
-export function MainMenu({ onSelectDecisionTree, onSelectChecklist }: MainMenuProps) {
+export function MainMenu({ onSelectDecisionTree }: MainMenuProps) {
   const decisionTrees = [
     {
       id: "safetyQuestionnaire",
@@ -16,20 +15,6 @@ export function MainMenu({ onSelectDecisionTree, onSelectChecklist }: MainMenuPr
       icon: Shield,
       color: "text-primary",
       featured: true
-    },
-    {
-      id: "emailCompromise",
-      title: "Email Account Security",
-      description: "Help with potentially compromised email accounts",
-      icon: Mail,
-      color: "text-blue-600"
-    },
-    {
-      id: "deviceSafety", 
-      title: "Device & Spyware Concerns",
-      description: "Check if your device might be monitored",
-      icon: Device,
-      color: "text-purple-600"
     },
     {
       id: "relationshipSafety",
@@ -44,45 +29,6 @@ export function MainMenu({ onSelectDecisionTree, onSelectChecklist }: MainMenuPr
       description: "Protect yourself on social platforms",
       icon: Users,
       color: "text-green-600"
-    }
-  ];
-
-  const quickChecklists = [
-    {
-      id: "emailSecurity",
-      title: "Email Security Steps",
-      description: "Secure your email account",
-      icon: Mail
-    },
-    {
-      id: "deviceSecurity",
-      title: "Device Security Check", 
-      description: "Check device for monitoring",
-      icon: Device
-    },
-    {
-      id: "locationPrivacy",
-      title: "Location Privacy",
-      description: "Protect location information",
-      icon: MapPin
-    },
-    {
-      id: "safetyPlanning",
-      title: "Safety Planning",
-      description: "Plan for digital safety",
-      icon: Shield
-    },
-    {
-      id: "safeCommunication",
-      title: "Safe Communication",
-      description: "Communicate safely while monitored",
-      icon: Heart
-    },
-    {
-      id: "imageAbuseResponse",
-      title: "Image Abuse Response",
-      description: "Steps for non-consensual image sharing",
-      icon: Shield
     }
   ];
 
@@ -168,34 +114,6 @@ export function MainMenu({ onSelectDecisionTree, onSelectChecklist }: MainMenuPr
                 );
               })}
             </div>
-          </div>
-        </div>
-
-        <div>
-          <h2 className="text-lg font-semibold mb-4 text-foreground">Quick Action Checklists</h2>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {quickChecklists.map((checklist) => {
-              const IconComponent = checklist.icon;
-              return (
-                <Button
-                  key={checklist.id}
-                  variant="outline"
-                  onClick={() => onSelectChecklist(checklist.id)}
-                  className="h-auto p-4 justify-start text-left"
-                >
-                  <div className="flex items-center gap-3 w-full">
-                    <IconComponent size={20} className="text-primary shrink-0" />
-                    <div className="flex-1 min-w-0">
-                      <div className="font-medium text-sm">{checklist.title}</div>
-                      <div className="text-xs text-muted-foreground truncate">
-                        {checklist.description}
-                      </div>
-                    </div>
-                    <ArrowRight size={14} className="text-muted-foreground shrink-0" />
-                  </div>
-                </Button>
-              );
-            })}
           </div>
         </div>
       </div>
