@@ -86,7 +86,7 @@ Remember: You are providing support and guidance, not legal advice. Always recom
       // Prepare the request
       const requestBody = {
         messages,
-        max_tokens: 1000,
+        max_completion_tokens: 1000,
         temperature: 0.7,
         top_p: 0.9,
         frequency_penalty: 0,
@@ -148,13 +148,42 @@ export const azureAIService = new AzureAIService();
 
 // Helper function to initialize Azure AI with environment variables or configuration
 export function initializeAzureAI(config?: Partial<AzureAIConfig>) {
-  // In a real implementation, you would get these from environment variables
-  // For development, they could be passed in or loaded from a secure configuration
+  // Helper to safely read env vars in different runtimes (Node, Vite, tests, etc.)
+  const safeGetEnv = (key: string): string | undefined => {
+    // Node / SSR via globalThis.process
+    try {
+      const gp = (globalThis as any)?.process;
+      if (gp?.env && key in gp.env) {
+        return gp.env[key];
+      }
+    } catch (_) { /* ignore */ }
+    // Vite style import.meta.env
+    try {
+      const ime = (import.meta as any)?.env;
+      if (ime && key in ime) {
+        return ime[key];
+      }
+    } catch (_) { /* ignore */ }
+    return undefined;
+  };
+
+  const endpoint = config?.endpoint || safeGetEnv('VITE_AZURE_OPENAI_ENDPOINT') || '';
+  const apiKey = config?.apiKey || safeGetEnv('VITE_AZURE_OPENAI_API_KEY') || '';
+  const deploymentName = config?.deploymentName || safeGetEnv('VITE_AZURE_OPENAI_DEPLOYMENT_NAME') || 'gpt-4';
+  const apiVersion = config?.apiVersion || safeGetEnv('VITE_AZURE_OPENAI_API_VERSION') || '2024-02-15-preview';
+
+  if ((!endpoint || !apiKey) && typeof window !== 'undefined') {
+    // Warn in development only to avoid leaking in production logs
+    if (typeof import.meta !== 'undefined' && (import.meta as any).env?.MODE !== 'production') {
+      console.warn('[AzureAI] Missing endpoint or apiKey. Service will be unconfigured. Provided config overrides take precedence if supplied.', { endpointPresent: !!endpoint, apiKeyPresent: !!apiKey });
+    }
+  }
+
   const azureConfig: AzureAIConfig = {
-    endpoint: config?.endpoint || process.env.VITE_AZURE_OPENAI_ENDPOINT || '',
-    apiKey: config?.apiKey || process.env.VITE_AZURE_OPENAI_API_KEY || '',
-    deploymentName: config?.deploymentName || process.env.VITE_AZURE_OPENAI_DEPLOYMENT_NAME || 'gpt-4',
-    apiVersion: config?.apiVersion || process.env.VITE_AZURE_OPENAI_API_VERSION || '2024-02-15-preview'
+    endpoint,
+    apiKey,
+    deploymentName,
+    apiVersion
   };
 
   azureAIService.configure(azureConfig);

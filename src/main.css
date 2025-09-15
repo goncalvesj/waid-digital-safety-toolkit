@@ -145,6 +145,10 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
+  /* Added spacing theme variable to satisfy --spacing() calls */
+  --spacing: var(--size);
+  /* Optionally define individual size tokens fallback if needed */
+  /* --size-4 already provided via tailwind config variable mapping */
 
   /*
   ---break---
