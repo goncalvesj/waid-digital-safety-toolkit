@@ -122,15 +122,9 @@ export function DecisionTreeFlow({ tree, onComplete, onBack }: DecisionTreeFlowP
 
             <div className="flex gap-3 pt-4">
               <Button
-                onClick={() => onComplete({ type: 'guidance', data: currentNode.guidance })}
-                className="flex-1"
-              >
-                View Related Checklists
-              </Button>
-              <Button
                 variant="outline"
                 onClick={() => onBack()}
-                className="flex-1"
+                className="w-full"
               >
                 Return to Main Menu
               </Button>

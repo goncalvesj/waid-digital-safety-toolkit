@@ -1,4 +1,4 @@
-import { Shield, Heart, Users, ArrowRight } from "@phosphor-icons/react";
+import { Shield, ArrowRight } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -15,20 +15,6 @@ export function MainMenu({ onSelectDecisionTree }: MainMenuProps) {
       icon: Shield,
       color: "text-primary",
       featured: true
-    },
-    {
-      id: "relationshipSafety",
-      title: "Relationship & Digital Safety",
-      description: "Guidance for digital safety in controlling relationships",
-      icon: Heart,
-      color: "text-rose-600"
-    },
-    {
-      id: "socialMediaSafety",
-      title: "Social Media & Online Safety",
-      description: "Protect yourself on social platforms",
-      icon: Users,
-      color: "text-green-600"
     }
   ];
 
@@ -54,7 +40,7 @@ export function MainMenu({ onSelectDecisionTree }: MainMenuProps) {
           <h2 className="text-lg font-semibold mb-4 text-foreground">Get Personalized Help</h2>
           <div className="space-y-4">
             {/* Featured Questionnaire */}
-            {decisionTrees.filter(tree => tree.featured).map((tree) => {
+            {decisionTrees.map((tree) => {
               const IconComponent = tree.icon;
               return (
                 <Card key={tree.id} className="cursor-pointer hover:shadow-lg transition-shadow border-primary/20 bg-gradient-to-r from-primary/5 to-primary/10">
@@ -82,38 +68,6 @@ export function MainMenu({ onSelectDecisionTree }: MainMenuProps) {
                 </Card>
               );
             })}
-            
-            {/* Other Decision Trees */}
-            <div className="grid gap-4 md:grid-cols-2">
-              {decisionTrees.filter(tree => !tree.featured).map((tree) => {
-                const IconComponent = tree.icon;
-                return (
-                  <Card key={tree.id} className="cursor-pointer hover:shadow-md transition-shadow">
-                    <CardHeader>
-                      <div className="flex items-start gap-3">
-                        <IconComponent size={24} className={tree.color} weight="fill" />
-                        <div className="flex-1">
-                          <CardTitle className="text-base">{tree.title}</CardTitle>
-                          <CardDescription className="text-sm mt-1">
-                            {tree.description}
-                          </CardDescription>
-                        </div>
-                        <ArrowRight size={16} className="text-muted-foreground" />
-                      </div>
-                    </CardHeader>
-                    <CardContent className="pt-0">
-                      <Button
-                        onClick={() => onSelectDecisionTree(tree.id)}
-                        className="w-full"
-                        variant="default"
-                      >
-                        Start Assessment
-                      </Button>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </div>
           </div>
         </div>
       </div>
