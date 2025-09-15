@@ -23,6 +23,10 @@ export const decisionTrees = {
           {
             text: "I see emails in my sent folder I didn't send",
             next: "unauthorized-emails"
+          },
+          {
+            text: "Someone knows things they shouldn't from my emails",
+            next: "privacy-breach"
           }
         ]
       },
@@ -310,6 +314,310 @@ export const decisionTrees = {
           ],
           nextSteps: "This is serious - follow our Complete Privacy Audit Checklist and consider seeking professional help."
         }
+      },
+      "privacy-breach": {
+        question: "How do you think someone accessed your email content?",
+        options: [
+          {
+            text: "They have my password",
+            next: "password-known"
+          },
+          {
+            text: "They might have access to my device",
+            next: "device-access"
+          },
+          {
+            text: "They seem to know about emails in real-time",
+            next: "live-monitoring"
+          },
+          {
+            text: "I'm not sure how they know",
+            next: "unknown-access"
+          }
+        ]
+      },
+      "password-known": {
+        guidance: {
+          title: "Password Compromise",
+          content: "If someone knows your password, they have full access to your email account.",
+          immediateActions: [
+            "Change your email password immediately",
+            "Enable two-factor authentication",
+            "Sign out all devices from your email account",
+            "Check for any account changes they may have made",
+            "Review who else might know this password"
+          ],
+          nextSteps: "Complete the Email Security Checklist and consider if this password was used elsewhere."
+        }
+      },
+      "device-access": {
+        guidance: {
+          title: "Device Access Suspected",
+          content: "If someone has physical or remote access to your device, they can read your emails directly.",
+          immediateActions: [
+            "Change device lock screen immediately",
+            "Sign out of email on this device",
+            "Check for unknown apps or remote access software",
+            "Change email password from a different, secure device",
+            "Enable two-factor authentication"
+          ],
+          nextSteps: "Follow the Device Security Checklist to check for monitoring software."
+        }
+      },
+      "live-monitoring": {
+        guidance: {
+          title: "Real-time Email Monitoring",
+          content: "Real-time knowledge suggests active monitoring software or email forwarding rules.",
+          immediateActions: [
+            "Check email forwarding rules immediately",
+            "Look for suspicious apps with email access",
+            "Change password from a different device",
+            "Review email app permissions",
+            "Check for email sync to unknown devices"
+          ],
+          nextSteps: "This suggests sophisticated monitoring - follow both Email Security and Device Security checklists."
+        }
+      },
+      "unknown-access": {
+        guidance: {
+          title: "Unknown Email Access Method",
+          content: "When the access method is unclear, we need to secure all possible entry points.",
+          immediateActions: [
+            "Change password immediately",
+            "Enable two-factor authentication",
+            "Check all email settings for suspicious changes",
+            "Review app permissions and connected devices",
+            "Sign out all devices and sessions"
+          ],
+          nextSteps: "Complete the comprehensive Email Security Checklist to cover all security aspects."
+        }
+      }
+    }
+  },
+  relationshipSafety: {
+    id: "relationship-safety",
+    title: "Relationship & Digital Safety",
+    description: "Guidance for digital safety in controlling relationships",
+    startNode: "initial",
+    nodes: {
+      initial: {
+        question: "What kind of digital monitoring or control are you experiencing?",
+        options: [
+          {
+            text: "Partner checks my phone/computer regularly",
+            next: "device-checking"
+          },
+          {
+            text: "They seem to know where I've been",
+            next: "location-tracking"
+          },
+          {
+            text: "They know about my online activities/messages",
+            next: "online-monitoring"
+          },
+          {
+            text: "They control my access to technology",
+            next: "tech-control"
+          },
+          {
+            text: "I'm worried about planning to leave safely",
+            next: "safety-planning"
+          }
+        ]
+      },
+      "device-checking": {
+        question: "How often do they check your devices?",
+        options: [
+          {
+            text: "Constantly - they demand to see everything",
+            next: "constant-monitoring"
+          },
+          {
+            text: "Regularly - several times a week",
+            next: "regular-checking"
+          },
+          {
+            text: "Sometimes - when they're suspicious",
+            next: "suspicious-checking"
+          },
+          {
+            text: "They've installed apps to monitor me",
+            next: "monitoring-apps"
+          }
+        ]
+      },
+      "constant-monitoring": {
+        guidance: {
+          title: "Intensive Digital Control",
+          content: "Constant device monitoring is a serious form of abuse. Your safety and privacy matter.",
+          immediateActions: [
+            "If safe: use a trusted friend's device to access help",
+            "Consider using private/incognito browsing when possible",
+            "Learn about local support services",
+            "Know that this behavior is not normal or acceptable",
+            "Remember: you deserve privacy and respect"
+          ],
+          nextSteps: "When it's safe, use our Safety Planning Checklist. Consider reaching out to domestic violence services."
+        }
+      },
+      "monitoring-apps": {
+        guidance: {
+          title: "Monitoring Software Installed",
+          content: "Hidden monitoring apps are a serious violation of your privacy and autonomy.",
+          immediateActions: [
+            "Do NOT remove apps immediately if unsafe to do so",
+            "Document evidence of monitoring if safe",
+            "Use a different, secure device for private communication",
+            "Contact domestic violence helpline for guidance",
+            "Plan for your safety first"
+          ],
+          nextSteps: "Follow our Device Security Checklist when it's safe. Priority is your physical safety."
+        }
+      },
+      "safety-planning": {
+        question: "What aspect of digital safety planning concerns you most?",
+        options: [
+          {
+            text: "Communicating safely for help",
+            next: "safe-communication"
+          },
+          {
+            text: "Hiding my plans from monitoring",
+            next: "hiding-plans"
+          },
+          {
+            text: "Securing new accounts/devices",
+            next: "new-accounts"
+          },
+          {
+            text: "Protecting my location after leaving",
+            next: "location-safety"
+          }
+        ]
+      },
+      "safe-communication": {
+        guidance: {
+          title: "Safe Communication Planning",
+          content: "Communicating safely while being monitored requires careful planning.",
+          immediateActions: [
+            "Use a trusted friend's phone/computer when possible",
+            "Consider using public computers at libraries",
+            "Learn helpline numbers by heart",
+            "Use private/incognito browsing mode",
+            "Clear browser history after use if safe to do so"
+          ],
+          nextSteps: "Follow our Safe Communication Checklist for detailed guidance on staying connected safely."
+        }
+      },
+      "hiding-plans": {
+        guidance: {
+          title: "Concealing Digital Activity",
+          content: "Hiding safety planning from monitoring requires specific techniques.",
+          immediateActions: [
+            "Use private browsing mode always",
+            "Clear all browser history and downloads",
+            "Use different devices when possible",
+            "Avoid saving any safety-related bookmarks",
+            "Consider using code words with trusted friends"
+          ],
+          nextSteps: "Use our Digital Hiding Checklist, but remember: your physical safety is most important."
+        }
+      },
+      "tech-control": {
+        guidance: {
+          title: "Technology Access Control",
+          content: "Controlling your access to technology is a form of isolation and abuse.",
+          immediateActions: [
+            "Know that this is a form of abuse",
+            "Use any brief access to research help resources",
+            "Memorize important phone numbers",
+            "Know locations of public computers/phones",
+            "Connect with trusted friends/family when possible"
+          ],
+          nextSteps: "When you have access, use our Technology Access Checklist to plan for independence."
+        }
+      }
+    }
+  },
+  socialMediaSafety: {
+    id: "social-media-safety",
+    title: "Social Media & Online Safety",
+    description: "Protect yourself on social platforms",
+    startNode: "initial",
+    nodes: {
+      initial: {
+        question: "What social media safety concern do you have?",
+        options: [
+          {
+            text: "Someone is harassing me online",
+            next: "harassment"
+          },
+          {
+            text: "My accounts keep getting hacked",
+            next: "account-hacking"
+          },
+          {
+            text: "Someone is impersonating me",
+            next: "impersonation"
+          },
+          {
+            text: "I'm worried about my privacy settings",
+            next: "privacy-settings"
+          },
+          {
+            text: "Someone is sharing my private information",
+            next: "doxxing"
+          }
+        ]
+      },
+      "harassment": {
+        question: "What type of harassment are you experiencing?",
+        options: [
+          {
+            text: "Threatening messages or comments",
+            next: "threats"
+          },
+          {
+            text: "Unwanted contact after blocking",
+            next: "persistent-contact"
+          },
+          {
+            text: "Sharing intimate images without consent",
+            next: "image-abuse"
+          },
+          {
+            text: "Creating fake accounts to contact me",
+            next: "fake-accounts"
+          }
+        ]
+      },
+      "threats": {
+        guidance: {
+          title: "Online Threats",
+          content: "Online threats should be taken seriously and documented.",
+          immediateActions: [
+            "Screenshot all threatening messages",
+            "Report to the platform immediately",
+            "Block the user on all platforms",
+            "Consider reporting to police if threats are serious",
+            "Tell trusted friends/family about the situation"
+          ],
+          nextSteps: "Follow our Online Harassment Documentation Checklist and consider legal advice."
+        }
+      },
+      "doxxing": {
+        guidance: {
+          title: "Personal Information Exposed",
+          content: "Having private information shared online is serious and potentially dangerous.",
+          immediateActions: [
+            "Document where your information is posted",
+            "Report to platforms for removal",
+            "Consider changing phone number/email if shared",
+            "Alert local police if you feel unsafe",
+            "Review all privacy settings immediately"
+          ],
+          nextSteps: "Use our Anti-Doxxing Checklist to secure your personal information."
+        }
       }
     }
   }
@@ -511,6 +819,251 @@ export const checklists = {
         id: "new-security",
         text: "Set up stronger security once recovered",
         detail: "New password, 2FA, updated recovery methods"
+      }
+    ]
+  },
+  safetyPlanning: {
+    id: "safety-planning",
+    title: "Digital Safety Planning Checklist",
+    description: "Plan for digital safety in controlling relationships",
+    items: [
+      {
+        id: "secure-device",
+        text: "Create a safety plan for device use",
+        detail: "Know when and where you can safely access devices"
+      },
+      {
+        id: "safe-communication",
+        text: "Establish safe communication methods",
+        detail: "Use trusted friends' devices, public computers, or secure apps"
+      },
+      {
+        id: "emergency-contacts",
+        text: "Memorize important phone numbers",
+        detail: "Helplines, trusted friends, family - don't save in phone if unsafe"
+      },
+      {
+        id: "financial-accounts",
+        text: "Plan for financial account security",
+        detail: "Consider separate accounts, change online banking passwords"
+      },
+      {
+        id: "social-media",
+        text: "Secure social media accounts",
+        detail: "Change passwords, review privacy settings, consider deactivating temporarily"
+      },
+      {
+        id: "location-privacy",
+        text: "Protect your location information",
+        detail: "Turn off location sharing, check apps with location access"
+      },
+      {
+        id: "evidence-documentation",
+        text: "Safely document abuse evidence",
+        detail: "Screenshot messages, save to secure cloud account from safe location"
+      },
+      {
+        id: "exit-strategy",
+        text: "Plan technology needs for leaving",
+        detail: "New phone, secure email, important documents backed up safely"
+      }
+    ]
+  },
+  safeCommunication: {
+    id: "safe-communication",
+    title: "Safe Communication Checklist",
+    description: "Communicate safely while being monitored",
+    items: [
+      {
+        id: "alternative-devices",
+        text: "Use devices your abuser doesn't monitor",
+        detail: "Friend's phone, public library computers, work computers"
+      },
+      {
+        id: "private-browsing",
+        text: "Always use private/incognito browsing",
+        detail: "Prevents history from being saved on the device"
+      },
+      {
+        id: "clear-history",
+        text: "Clear browser history and downloads after use",
+        detail: "Remove all traces of safety-related browsing"
+      },
+      {
+        id: "secure-apps",
+        text: "Use secure messaging apps when safe",
+        detail: "Signal, WhatsApp with disappearing messages - but be careful about installation"
+      },
+      {
+        id: "code-words",
+        text: "Establish code words with trusted contacts",
+        detail: "Secret phrases to indicate danger or need for help"
+      },
+      {
+        id: "timing-safety",
+        text: "Choose safe times for communication",
+        detail: "When abuser is away, asleep, or distracted"
+      },
+      {
+        id: "helpline-access",
+        text: "Know how to contact helplines safely",
+        detail: "Memorize numbers, know online chat options"
+      },
+      {
+        id: "emergency-plan",
+        text: "Have emergency communication ready",
+        detail: "Pre-written messages, emergency contacts ready to call"
+      }
+    ]
+  },
+  antiDoxxing: {
+    id: "anti-doxxing",
+    title: "Anti-Doxxing Checklist",
+    description: "Protect against personal information exposure",
+    items: [
+      {
+        id: "review-public-info",
+        text: "Audit what personal information is publicly available",
+        detail: "Search your name, check social media profiles, review public records"
+      },
+      {
+        id: "privacy-settings",
+        text: "Maximize privacy settings on all accounts",
+        detail: "Facebook, Instagram, Twitter, LinkedIn - make everything private"
+      },
+      {
+        id: "remove-personal-info",
+        text: "Remove personal information from public profiles",
+        detail: "Phone numbers, addresses, workplace, relationship status"
+      },
+      {
+        id: "secure-addresses",
+        text: "Consider alternative addresses for sensitive accounts",
+        detail: "Use P.O. Box or trusted friend's address for important accounts"
+      },
+      {
+        id: "phone-privacy",
+        text: "Protect phone number privacy",
+        detail: "Remove from public directories, use Google Voice for public use"
+      },
+      {
+        id: "email-protection",
+        text: "Use separate emails for different purposes",
+        detail: "Private email for close contacts, public email for general use"
+      },
+      {
+        id: "data-broker-removal",
+        text: "Request removal from data broker sites",
+        detail: "Contact sites like Spokeo, WhitePages, BeenVerified to remove listings"
+      },
+      {
+        id: "monitor-mentions",
+        text: "Set up alerts for your name online",
+        detail: "Google Alerts to monitor when your information appears online"
+      }
+    ]
+  },
+  harrassmentDocumentation: {
+    id: "harassment-documentation",
+    title: "Online Harassment Documentation Checklist",
+    description: "Document and respond to online harassment",
+    items: [
+      {
+        id: "screenshot-evidence",
+        text: "Screenshot all harassing messages and posts",
+        detail: "Include timestamps, usernames, and URLs in screenshots"
+      },
+      {
+        id: "save-urls",
+        text: "Save direct links to harassing content",
+        detail: "Copy and save URLs before content might be deleted"
+      },
+      {
+        id: "report-platforms",
+        text: "Report harassment to each platform",
+        detail: "Use official reporting tools on Facebook, Twitter, Instagram, etc."
+      },
+      {
+        id: "block-accounts",
+        text: "Block harassing accounts immediately",
+        detail: "Block on all platforms where you have accounts"
+      },
+      {
+        id: "document-timeline",
+        text: "Keep a timeline of harassment incidents",
+        detail: "Date, time, platform, what happened, screenshots saved"
+      },
+      {
+        id: "backup-evidence",
+        text: "Store evidence in multiple secure locations",
+        detail: "Cloud storage, external drive, email to yourself"
+      },
+      {
+        id: "report-authorities",
+        text: "Consider reporting to police if threats are serious",
+        detail: "Especially if threats mention violence or real-world harm"
+      },
+      {
+        id: "inform-trusted-contacts",
+        text: "Tell trusted friends and family about the situation",
+        detail: "They can help monitor for fake accounts and provide support"
+      }
+    ]
+  },
+  completePrivacyAudit: {
+    id: "complete-privacy-audit",
+    title: "Complete Privacy Audit Checklist",
+    description: "Comprehensive review of all digital privacy",
+    items: [
+      {
+        id: "password-audit",
+        text: "Change passwords on ALL accounts",
+        detail: "Email, social media, banking, shopping, streaming - everything"
+      },
+      {
+        id: "enable-2fa-everywhere",
+        text: "Enable two-factor authentication on every account that offers it",
+        detail: "Use authenticator app when possible, SMS as backup"
+      },
+      {
+        id: "device-cleanup",
+        text: "Remove unknown apps and review all permissions",
+        detail: "Check phone, computer, tablets for suspicious software"
+      },
+      {
+        id: "account-connections",
+        text: "Review all connected apps and services",
+        detail: "Facebook apps, Google account access, third-party services"
+      },
+      {
+        id: "email-forensics",
+        text: "Deep dive into email security",
+        detail: "Forwarding rules, filters, authorized apps, login history"
+      },
+      {
+        id: "location-audit",
+        text: "Turn off location tracking everywhere",
+        detail: "Google, Apple, social media, apps - disable location history"
+      },
+      {
+        id: "social-media-lockdown",
+        text: "Make all social media accounts private",
+        detail: "Remove personal information, limit who can find you"
+      },
+      {
+        id: "financial-security",
+        text: "Secure all financial accounts",
+        detail: "Banks, credit cards, investment accounts, payment apps"
+      },
+      {
+        id: "recovery-methods",
+        text: "Update recovery information on all accounts",
+        detail: "Ensure backup emails and phone numbers are secure and yours"
+      },
+      {
+        id: "regular-monitoring",
+        text: "Set up ongoing security monitoring",
+        detail: "Account alerts, credit monitoring, regular security check-ups"
       }
     ]
   }

@@ -1,4 +1,4 @@
-import { Shield, Mail, Device, MapPin, ArrowRight } from "@phosphor-icons/react";
+import { Shield, Mail, Device, MapPin, ArrowRight, Heart, Users } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -22,6 +22,20 @@ export function MainMenu({ onSelectDecisionTree, onSelectChecklist }: MainMenuPr
       description: "Check if your device might be monitored",
       icon: Device,
       color: "text-purple-600"
+    },
+    {
+      id: "relationshipSafety",
+      title: "Relationship & Digital Safety",
+      description: "Guidance for digital safety in controlling relationships",
+      icon: Heart,
+      color: "text-rose-600"
+    },
+    {
+      id: "socialMediaSafety",
+      title: "Social Media & Online Safety",
+      description: "Protect yourself on social platforms",
+      icon: Users,
+      color: "text-green-600"
     }
   ];
 
@@ -45,9 +59,21 @@ export function MainMenu({ onSelectDecisionTree, onSelectChecklist }: MainMenuPr
       icon: MapPin
     },
     {
-      id: "accountRecovery",
-      title: "Account Recovery",
-      description: "Recover compromised accounts",
+      id: "safetyPlanning",
+      title: "Safety Planning",
+      description: "Plan for digital safety",
+      icon: Shield
+    },
+    {
+      id: "safeCommunication",
+      title: "Safe Communication",
+      description: "Communicate safely while monitored",
+      icon: Heart
+    },
+    {
+      id: "completePrivacyAudit",
+      title: "Complete Privacy Audit",
+      description: "Comprehensive privacy review",
       icon: Shield
     }
   ];
@@ -101,7 +127,7 @@ export function MainMenu({ onSelectDecisionTree, onSelectChecklist }: MainMenuPr
 
         <div>
           <h2 className="text-lg font-semibold mb-4 text-foreground">Quick Action Checklists</h2>
-          <div className="grid gap-3 sm:grid-cols-2">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {quickChecklists.map((checklist) => {
               const IconComponent = checklist.icon;
               return (
