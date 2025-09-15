@@ -1,5 +1,5 @@
-import { Shield, ArrowRight, MessageCircle } from "@phosphor-icons/react";
-import { Button } from "@/components/ui/button";
+import { Shield, ArrowRight, ChatCircleDots } from "@phosphor-icons/react";
+import { Button } from "@/components/ui/button"; // Retained if needed elsewhere or for consistency (could be removed if unused)
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface MainMenuProps {
@@ -34,12 +34,19 @@ export function MainMenu({ onSelectDecisionTree, onOpenChat }: MainMenuProps) {
       <div className="space-y-6">
         <div>
           <h2 className="text-lg font-semibold mb-4 text-foreground">Get Personalized Help</h2>
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-4 md:grid-cols-2 items-stretch">
             {/* AI Chat Assistant */}
-            <Card className="cursor-pointer hover:shadow-lg transition-shadow border-accent/20 bg-gradient-to-r from-accent/5 to-accent/10">
-              <CardHeader>
+            <Card
+              className="group cursor-pointer hover:shadow-lg transition-shadow border-accent/20 bg-gradient-to-r from-accent/5 to-accent/10 h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+              role="button"
+              tabIndex={0}
+              onClick={onOpenChat}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onOpenChat(); } }}
+              aria-label="Open AI safety assistant chat"
+            >
+              <CardHeader className="pb-2">
                 <div className="flex items-start gap-3">
-                  <MessageCircle size={28} className="text-accent" weight="fill" />
+                  <ChatCircleDots size={28} className="text-accent" weight="fill" />
                   <div className="flex-1">
                     <CardTitle className="text-lg">AI Safety Assistant</CardTitle>
                     <CardDescription className="text-sm mt-1">
@@ -49,15 +56,10 @@ export function MainMenu({ onSelectDecisionTree, onOpenChat }: MainMenuProps) {
                   <ArrowRight size={18} className="text-muted-foreground" />
                 </div>
               </CardHeader>
-              <CardContent className="pt-0">
-                <Button
-                  onClick={onOpenChat}
-                  className="w-full"
-                  size="lg"
-                  variant="outline"
-                >
+              <CardContent className="pt-0 flex flex-col flex-1 justify-end">
+                <div className="w-full mt-2 px-4 py-3 rounded-md bg-accent text-accent-foreground font-medium text-center transition-colors group-hover:bg-accent/90">
                   Start Chat
-                </Button>
+                </div>
               </CardContent>
             </Card>
 
@@ -65,8 +67,16 @@ export function MainMenu({ onSelectDecisionTree, onOpenChat }: MainMenuProps) {
             {decisionTrees.map((tree) => {
               const IconComponent = tree.icon;
               return (
-                <Card key={tree.id} className="cursor-pointer hover:shadow-lg transition-shadow border-primary/20 bg-gradient-to-r from-primary/5 to-primary/10">
-                  <CardHeader>
+                <Card
+                  key={tree.id}
+                  className="group cursor-pointer hover:shadow-lg transition-shadow border-primary/20 bg-gradient-to-r from-primary/5 to-primary/10 h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => onSelectDecisionTree(tree.id)}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onSelectDecisionTree(tree.id); } }}
+                  aria-label="Start digital safety questionnaire"
+                >
+                  <CardHeader className="pb-2">
                     <div className="flex items-start gap-3">
                       <IconComponent size={28} className={tree.color} weight="fill" />
                       <div className="flex-1">
@@ -78,14 +88,10 @@ export function MainMenu({ onSelectDecisionTree, onOpenChat }: MainMenuProps) {
                       <ArrowRight size={18} className="text-muted-foreground" />
                     </div>
                   </CardHeader>
-                  <CardContent className="pt-0">
-                    <Button
-                      onClick={() => onSelectDecisionTree(tree.id)}
-                      className="w-full"
-                      size="lg"
-                    >
+                  <CardContent className="pt-0 flex flex-col flex-1 justify-end">
+                    <div className="w-full mt-2 px-4 py-3 rounded-md bg-primary text-primary-foreground font-medium text-center transition-colors group-hover:bg-primary/90">
                       Start Questionnaire
-                    </Button>
+                    </div>
                   </CardContent>
                 </Card>
               );

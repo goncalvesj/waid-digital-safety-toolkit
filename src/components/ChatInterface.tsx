@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { ArrowLeft, Send, MessageCircle, Bot, User, Gear } from '@phosphor-icons/react';
+import { ArrowLeft, PaperPlaneTilt, ChatCircleDots, Robot, User, Gear } from '@phosphor-icons/react';
 import { toast } from 'sonner';
 import { azureAIService, initializeAzureAI } from '@/lib/azureAI';
 
@@ -133,7 +133,7 @@ export function ChatInterface({ onBack }: ChatInterfaceProps) {
         <CardHeader className="pb-4">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-              <MessageCircle size={20} className="text-primary" />
+              <ChatCircleDots size={20} className="text-primary" />
             </div>
             <div className="flex-1">
               <CardTitle className="text-xl">Digital Safety Assistant</CardTitle>
@@ -181,7 +181,7 @@ export function ChatInterface({ onBack }: ChatInterfaceProps) {
                   >
                     {message.sender === 'assistant' && (
                       <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <Bot size={16} className="text-primary" />
+                        <Robot size={16} className="text-primary" />
                       </div>
                     )}
                     
@@ -216,7 +216,7 @@ export function ChatInterface({ onBack }: ChatInterfaceProps) {
                 {isLoading && (
                   <div className="flex gap-3 justify-start">
                     <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <Bot size={16} className="text-primary" />
+                      <Robot size={16} className="text-primary" />
                     </div>
                     <div className="bg-muted border p-3 rounded-lg">
                       <div className="flex gap-1">
@@ -245,7 +245,7 @@ export function ChatInterface({ onBack }: ChatInterfaceProps) {
                   disabled={!inputValue.trim() || isLoading}
                   size="icon"
                 >
-                  <Send size={16} />
+                  <PaperPlaneTilt size={16} />
                 </Button>
               </div>
               <p className="text-xs text-muted-foreground mt-2">
