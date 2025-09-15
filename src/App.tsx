@@ -3,9 +3,10 @@ import { Toaster } from "@/components/ui/sonner";
 import { QuickExitButton } from '@/components/QuickExitButton';
 import { MainMenu } from '@/components/MainMenu';
 import { DecisionTreeFlow } from '@/components/DecisionTreeFlow';
+import { ChatInterface } from '@/components/ChatInterface';
 import { decisionTrees } from '@/data/content';
 
-type ViewType = 'menu' | 'decisionTree';
+type ViewType = 'menu' | 'decisionTree' | 'chat';
 
 interface AppState {
   view: ViewType;
@@ -17,6 +18,10 @@ function App() {
 
   const handleSelectDecisionTree = (treeId: string) => {
     setState({ view: 'decisionTree', selectedDecisionTree: treeId });
+  };
+
+  const handleOpenChat = () => {
+    setState({ view: 'chat' });
   };
 
   const handleDecisionTreeComplete = (result: any) => {
@@ -43,10 +48,18 @@ function App() {
         }
         return null;
 
+      case 'chat':
+        return (
+          <ChatInterface
+            onBack={handleBackToMenu}
+          />
+        );
+
       default:
         return (
           <MainMenu
             onSelectDecisionTree={handleSelectDecisionTree}
+            onOpenChat={handleOpenChat}
           />
         );
     }

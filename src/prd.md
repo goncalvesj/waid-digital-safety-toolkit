@@ -37,25 +37,44 @@
 
 ## Essential Features
 
-### 1. Digital Safety Questionnaire
+### 1. AI-Powered Safety Assistant
+**What it does**: Real-time chat interface with Azure AI Agent providing personalized digital safety guidance using comprehensive knowledge base
+**Why it matters**: Offers immediate, contextual support during crisis moments with trauma-informed responses
+**Success criteria**: Users receive relevant, empathetic guidance that addresses their specific situation and provides actionable next steps
+
+### 2. Digital Safety Questionnaire
 **What it does**: Interactive step-by-step assessment based on comprehensive digital safety guidance
 **Why it matters**: Provides personalized, relevant guidance tailored to specific situations
 **Success criteria**: Users receive actionable advice relevant to their specific digital safety concerns
 
-### 2. Crisis-Ready Quick Exit
+### 3. Crisis-Ready Quick Exit
 **What it does**: Instant exit to BBC using location.replace() with no browser history
 **Why it matters**: Critical safety feature for users in monitoring situations
 **Success criteria**: Immediate exit without leaving traces
 
-### 3. Comprehensive Decision Trees
-**What it does**: Interactive guidance flows for relationship safety, social media safety, and general safety assessment
+### 4. Comprehensive Decision Trees
+**What it does**: Interactive guidance flows for safety assessment
 **Why it matters**: Provides structured support for different types of digital safety concerns
 **Success criteria**: Users find relevant guidance paths for their specific situation
 
-### 4. Privacy-First Architecture
-**What it does**: No data persistence, tracking, or external communications
+### 5. Privacy-First Architecture
+**What it does**: No data persistence, tracking, or external communications except for AI integration
 **Why it matters**: Ensures user safety and builds trust in sensitive situations
 **Success criteria**: Complete privacy with no digital traces left behind
+
+## AI Integration Specifications
+
+### Azure AI Agent Configuration
+**Purpose**: Provides real-time, contextual guidance using comprehensive digital safety knowledge base
+**Data Source**: Complete content from data.md integrated as system context
+**Privacy Approach**: No conversation storage, ephemeral interactions only
+**Fallback**: Offline mode with pattern-based responses when Azure AI unavailable
+
+### Conversation Design
+**Tone**: Trauma-informed, empathetic, safety-focused
+**Context Awareness**: Maintains conversation context across messages for coherent guidance
+**Knowledge Integration**: Uses Women's Aid Ireland guidance, Irish legal context, and specialized digital safety content
+**Safety Boundaries**: Always prioritizes immediate safety, directs to emergency services when appropriate
 
 ## Design Direction
 

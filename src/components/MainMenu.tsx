@@ -1,12 +1,13 @@
-import { Shield, ArrowRight } from "@phosphor-icons/react";
+import { Shield, ArrowRight, MessageCircle } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface MainMenuProps {
   onSelectDecisionTree: (treeId: string) => void;
+  onOpenChat: () => void;
 }
 
-export function MainMenu({ onSelectDecisionTree }: MainMenuProps) {
+export function MainMenu({ onSelectDecisionTree, onOpenChat }: MainMenuProps) {
   const decisionTrees = [
     {
       id: "safetyQuestionnaire",
@@ -33,7 +34,33 @@ export function MainMenu({ onSelectDecisionTree }: MainMenuProps) {
       <div className="space-y-6">
         <div>
           <h2 className="text-lg font-semibold mb-4 text-foreground">Get Personalized Help</h2>
-          <div className="space-y-4">
+          <div className="grid gap-4 md:grid-cols-2">
+            {/* AI Chat Assistant */}
+            <Card className="cursor-pointer hover:shadow-lg transition-shadow border-accent/20 bg-gradient-to-r from-accent/5 to-accent/10">
+              <CardHeader>
+                <div className="flex items-start gap-3">
+                  <MessageCircle size={28} className="text-accent" weight="fill" />
+                  <div className="flex-1">
+                    <CardTitle className="text-lg">AI Safety Assistant</CardTitle>
+                    <CardDescription className="text-sm mt-1">
+                      Chat privately with our AI for immediate guidance
+                    </CardDescription>
+                  </div>
+                  <ArrowRight size={18} className="text-muted-foreground" />
+                </div>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <Button
+                  onClick={onOpenChat}
+                  className="w-full"
+                  size="lg"
+                  variant="outline"
+                >
+                  Start Chat
+                </Button>
+              </CardContent>
+            </Card>
+
             {/* Featured Questionnaire */}
             {decisionTrees.map((tree) => {
               const IconComponent = tree.icon;
