@@ -26,13 +26,8 @@ export function MainMenu({ onSelectDecisionTree }: MainMenuProps) {
           <h1 className="text-2xl font-bold text-foreground">Digital Safety Toolkit</h1>
         </div>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Get immediate, private guidance for digital safety concerns. Access relevant advice during crisis moments. All information stays completely private on your device.
+          Women's Aid Ireland provides free, confidential support to women experiencing domestic violence. We're here 24/7 to help you find safety and support.
         </p>
-        <div className="bg-accent/10 rounded-lg p-3 max-w-2xl mx-auto">
-          <p className="text-sm font-medium text-accent">
-            🔒 Crisis-Ready Tool | 📱 Mobile-First Design | 🚪 Quick Exit Available
-          </p>
-        </div>
       </div>
 
       <div className="space-y-6">
