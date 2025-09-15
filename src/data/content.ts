@@ -314,82 +314,286 @@ export const decisionTrees = {
           ],
           nextSteps: "This is serious - follow our Complete Privacy Audit Checklist and consider seeking professional help."
         }
-      },
-      "privacy-breach": {
-        question: "How do you think someone accessed your email content?",
+      }
+    }
+  },
+  safetyAssessment: {
+    id: "safety-assessment",
+    title: "Digital Safety Assessment",
+    description: "Get personalized guidance for your current situation",
+    startNode: "initial",
+    nodes: {
+      initial: {
+        question: "What best describes your current digital safety concern?",
         options: [
           {
-            text: "They have my password",
-            next: "password-known"
+            text: "Someone is monitoring or controlling my digital activities",
+            next: "monitoring-control"
           },
           {
-            text: "They might have access to my device",
-            next: "device-access"
+            text: "My accounts or devices may have been compromised",
+            next: "potential-compromise"
           },
           {
-            text: "They seem to know about emails in real-time",
-            next: "live-monitoring"
+            text: "I'm experiencing online harassment or threats",
+            next: "harassment-threats"
           },
           {
-            text: "I'm not sure how they know",
-            next: "unknown-access"
+            text: "Private images/videos of me have been shared without consent",
+            next: "image-abuse"
+          },
+          {
+            text: "I want to protect my privacy and stay safe online",
+            next: "prevention-privacy"
+          },
+          {
+            text: "I'm supporting someone who is experiencing digital abuse",
+            next: "supporting-others"
           }
         ]
       },
-      "password-known": {
+      "monitoring-control": {
+        question: "Who do you think is monitoring or controlling your digital activities?",
+        options: [
+          {
+            text: "Current or former intimate partner",
+            next: "partner-monitoring"
+          },
+          {
+            text: "Family member or someone I live with",
+            next: "family-monitoring"
+          },
+          {
+            text: "Someone I know (friend, colleague, etc.)",
+            next: "known-person-monitoring"
+          },
+          {
+            text: "Unknown person or stranger",
+            next: "unknown-monitoring"
+          },
+          {
+            text: "I'm not sure who, but I suspect monitoring",
+            next: "suspected-monitoring"
+          }
+        ]
+      },
+      "partner-monitoring": {
+        question: "What type of monitoring or control are you experiencing from your partner?",
+        options: [
+          {
+            text: "They demand passwords to my accounts",
+            next: "password-demands"
+          },
+          {
+            text: "They check my phone, computer, or browsing history",
+            next: "device-checking"
+          },
+          {
+            text: "They seem to know where I go or who I talk to",
+            next: "location-communication-tracking"
+          },
+          {
+            text: "They control my access to technology or internet",
+            next: "tech-access-control"
+          },
+          {
+            text: "Multiple forms of digital control",
+            next: "multiple-control"
+          }
+        ]
+      },
+      "password-demands": {
         guidance: {
-          title: "Password Compromise",
-          content: "If someone knows your password, they have full access to your email account.",
+          title: "Password Demands and Digital Control",
+          content: "Demanding passwords is a form of digital abuse and violates your privacy rights. You have the right to digital privacy even in relationships.",
           immediateActions: [
-            "Change your email password immediately",
-            "Enable two-factor authentication",
-            "Sign out all devices from your email account",
-            "Check for any account changes they may have made",
-            "Review who else might know this password"
+            "Know that demanding passwords is not normal or acceptable in healthy relationships",
+            "If safe to do so, change passwords when they're not around",
+            "Use private browsing mode when possible",
+            "Consider creating separate accounts they don't know about",
+            "Document instances of password demands if safe to do so"
           ],
-          nextSteps: "Complete the Email Security Checklist and consider if this password was used elsewhere."
+          nextSteps: "Consider reaching out to domestic violence services for support and safety planning. Use our Digital Safety Planning resources when it's safe to access them."
         }
       },
-      "device-access": {
+      "device-checking": {
         guidance: {
-          title: "Device Access Suspected",
-          content: "If someone has physical or remote access to your device, they can read your emails directly.",
+          title: "Device Monitoring by Partner",
+          content: "Regular checking of your devices is a serious violation of your privacy and a form of digital abuse.",
           immediateActions: [
-            "Change device lock screen immediately",
-            "Sign out of email on this device",
-            "Check for unknown apps or remote access software",
-            "Change email password from a different, secure device",
-            "Enable two-factor authentication"
+            "Use private/incognito browsing mode to avoid leaving history",
+            "Clear browsing history and downloads if safe to do so",
+            "Be cautious about what you save on monitored devices",
+            "Consider using trusted friends' devices for private communication",
+            "Delete sensitive messages but keep abusive ones as evidence if safe"
           ],
-          nextSteps: "Follow the Device Security Checklist to check for monitoring software."
+          nextSteps: "This behavior is concerning. When safe, contact domestic violence services and use our Safety Planning resources."
         }
       },
-      "live-monitoring": {
+      "potential-compromise": {
+        question: "What makes you think your accounts or devices might be compromised?",
+        options: [
+          {
+            text: "Friends say they received messages I didn't send",
+            next: "unauthorized-messages"
+          },
+          {
+            text: "I can't access my accounts or passwords were changed",
+            next: "locked-out-accounts"
+          },
+          {
+            text: "Unknown apps appeared on my device",
+            next: "unknown-apps-found"
+          },
+          {
+            text: "My device is acting strangely (slow, hot, battery drain)",
+            next: "device-behavior-changes"
+          },
+          {
+            text: "Someone knows information they shouldn't have access to",
+            next: "leaked-information"
+          }
+        ]
+      },
+      "unauthorized-messages": {
         guidance: {
-          title: "Real-time Email Monitoring",
-          content: "Real-time knowledge suggests active monitoring software or email forwarding rules.",
+          title: "Unauthorized Messages Sent",
+          content: "Messages being sent from your accounts without your knowledge indicates serious account compromise.",
           immediateActions: [
-            "Check email forwarding rules immediately",
-            "Look for suspicious apps with email access",
-            "Change password from a different device",
-            "Review email app permissions",
-            "Check for email sync to unknown devices"
+            "Change passwords on ALL affected accounts immediately",
+            "Enable two-factor authentication on all accounts",
+            "Sign out all devices from your accounts",
+            "Inform your contacts that your accounts were compromised",
+            "Check for any changes to account settings or recovery information"
           ],
-          nextSteps: "This suggests sophisticated monitoring - follow both Email Security and Device Security checklists."
+          nextSteps: "Follow our Email Security Checklist and Account Recovery process to fully secure your accounts."
         }
       },
-      "unknown-access": {
+      "harassment-threats": {
+        question: "What type of online harassment or threats are you experiencing?",
+        options: [
+          {
+            text: "Threatening or abusive messages on social media or text",
+            next: "threatening-messages"
+          },
+          {
+            text: "Someone created fake accounts to contact me",
+            next: "fake-accounts-harassment"
+          },
+          {
+            text: "My personal information was shared publicly online",
+            next: "doxxing-harassment"
+          },
+          {
+            text: "Someone is impersonating me online",
+            next: "impersonation-harassment"
+          },
+          {
+            text: "Continuous contact despite blocking them",
+            next: "persistent-harassment"
+          }
+        ]
+      },
+      "threatening-messages": {
         guidance: {
-          title: "Unknown Email Access Method",
-          content: "When the access method is unclear, we need to secure all possible entry points.",
+          title: "Threatening or Abusive Messages",
+          content: "Online threats and abusive messages are serious and may be criminal. Your safety matters.",
           immediateActions: [
-            "Change password immediately",
-            "Enable two-factor authentication",
-            "Check all email settings for suspicious changes",
-            "Review app permissions and connected devices",
-            "Sign out all devices and sessions"
+            "Take screenshots of all threatening messages (include timestamps)",
+            "Do not respond to or engage with the threats",
+            "Block the person on all platforms immediately",
+            "Report the threats to the platform using their reporting tools",
+            "If threats mention violence or real-world harm, contact Gardaí"
           ],
-          nextSteps: "Complete the comprehensive Email Security Checklist to cover all security aspects."
+          nextSteps: "Save all evidence safely and consider contacting Women's Aid (1800 341 900) for support and guidance on next steps."
+        }
+      },
+      "prevention-privacy": {
+        question: "What aspect of digital privacy and safety would you like to focus on?",
+        options: [
+          {
+            text: "Making my social media accounts more private and secure",
+            next: "social-media-privacy"
+          },
+          {
+            text: "Protecting my location information and movements",
+            next: "location-privacy-focus"
+          },
+          {
+            text: "Securing my email and online accounts",
+            next: "account-security-focus"
+          },
+          {
+            text: "General device security and safe browsing practices",
+            next: "device-security-focus"
+          },
+          {
+            text: "Understanding what digital abuse looks like",
+            next: "digital-abuse-education"
+          }
+        ]
+      },
+      "social-media-privacy": {
+        guidance: {
+          title: "Social Media Privacy Protection",
+          content: "Securing your social media accounts is essential for maintaining privacy and safety online.",
+          immediateActions: [
+            "Set all your profiles to private (friends/followers only)",
+            "Remove personal information like phone numbers and addresses from profiles",
+            "Turn off location sharing and geotagging in all apps",
+            "Review your friends/followers list and remove people you don't trust",
+            "Check privacy settings for who can find you by email or phone number"
+          ],
+          nextSteps: "Complete our Social Media Privacy Checklist for detailed steps on each platform."
+        }
+      },
+      "supporting-others": {
+        question: "How would you like to support someone experiencing digital abuse?",
+        options: [
+          {
+            text: "I see someone being harassed online",
+            next: "witnessing-harassment"
+          },
+          {
+            text: "A friend told me they're experiencing digital abuse",
+            next: "friend-disclosure"
+          },
+          {
+            text: "I want to learn about digital abuse to help others",
+            next: "education-helping"
+          },
+          {
+            text: "I need resources to share with someone",
+            next: "resource-sharing"
+          }
+        ]
+      },
+      "witnessing-harassment": {
+        guidance: {
+          title: "Responding to Online Harassment",
+          content: "Witnessing online harassment can be distressing, but there are safe ways to help.",
+          immediateActions: [
+            "Take screenshots of the harassment for evidence (include usernames, timestamps)",
+            "Report the abusive content using the platform's reporting tools",
+            "Reach out privately to the person being harassed to offer support",
+            "Do not engage directly with the harasser - this can escalate the situation",
+            "If threats mention violence, alert the person being targeted and consider contacting Gardaí"
+          ],
+          nextSteps: "Focus on supporting the person being harassed and helping them access professional support services."
+        }
+      },
+      "digital-abuse-education": {
+        guidance: {
+          title: "Understanding Digital Abuse",
+          content: "Digital abuse includes monitoring, controlling, harassing, or threatening someone using technology.",
+          immediateActions: [
+            "Learn the signs: password demands, device checking, location tracking, threatening messages",
+            "Understand that digital abuse often happens alongside other forms of abuse",
+            "Know that victims deserve privacy and respect in their digital lives",
+            "Remember that the abuser is responsible for their behavior, not the victim",
+            "Learn about available resources and support services"
+          ],
+          nextSteps: "Share information about digital safety resources with others and support anyone who discloses abuse to you."
         }
       }
     }
@@ -536,6 +740,90 @@ export const decisionTrees = {
           ],
           nextSteps: "When you have access, use our Technology Access Checklist to plan for independence."
         }
+      },
+      "regular-checking": {
+        guidance: {
+          title: "Regular Device Monitoring",
+          content: "Regular checking of your devices is a serious violation of your privacy.",
+          immediateActions: [
+            "Recognize this as controlling behavior",
+            "Use private browsing when possible",
+            "Clear history if safe to do so",
+            "Consider using trusted friends' devices for private communication",
+            "Document the controlling behavior if safe"
+          ],
+          nextSteps: "When safe, follow our Safety Planning Checklist for guidance on protecting your privacy."
+        }
+      },
+      "suspicious-checking": {
+        guidance: {
+          title: "Suspicious Device Checking",
+          content: "Even occasional device checking shows concerning controlling behavior.",
+          immediateActions: [
+            "Use private browsing mode",
+            "Be cautious about what you save on the device",
+            "Consider deleting browsing history regularly",
+            "Use code words with trusted friends",
+            "Trust your instincts about your safety"
+          ],
+          nextSteps: "Consider using our Safety Planning resources when you feel ready."
+        }
+      },
+      "online-monitoring": {
+        guidance: {
+          title: "Online Activity Monitoring",
+          content: "Monitoring your online activities is a form of digital stalking and control.",
+          immediateActions: [
+            "Change passwords if safe to do so",
+            "Check for monitoring apps or keyloggers",
+            "Use private browsing mode",
+            "Consider creating separate, secret accounts",
+            "Reach out for support when it's safe"
+          ],
+          nextSteps: "Follow our Digital Privacy Protection Checklist when it's safe to do so."
+        }
+      },
+      "location-tracking": {
+        guidance: {
+          title: "Location Tracking by Partner",
+          content: "Being tracked by a partner is a serious form of surveillance and control.",
+          immediateActions: [
+            "Check your phone for tracking apps",
+            "Turn off location sharing if safe",
+            "Consider leaving phone at home occasionally if safe",
+            "Vary your routes and routines when possible",
+            "Tell trusted friends about the tracking"
+          ],
+          nextSteps: "Use our Location Privacy Checklist when it's safe to access it."
+        }
+      },
+      "new-accounts": {
+        guidance: {
+          title: "Securing New Accounts",
+          content: "Setting up secure, private accounts is crucial for safety planning.",
+          immediateActions: [
+            "Use a different device if possible",
+            "Create new email from a safe location",
+            "Use strong, unique passwords",
+            "Enable two-factor authentication",
+            "Don't use names or details they know"
+          ],
+          nextSteps: "Follow our Account Security Setup checklist for complete protection."
+        }
+      },
+      "location-safety": {
+        guidance: {
+          title: "Post-Separation Location Safety",
+          content: "Protecting your location after leaving requires careful digital planning.",
+          immediateActions: [
+            "Turn off all location sharing",
+            "Change all account passwords",
+            "Check for tracking apps on all devices",
+            "Consider getting a new phone if possible",
+            "Review social media privacy settings"
+          ],
+          nextSteps: "Complete our Post-Separation Digital Safety Checklist."
+        }
       }
     }
   },
@@ -617,6 +905,90 @@ export const decisionTrees = {
             "Review all privacy settings immediately"
           ],
           nextSteps: "Use our Anti-Doxxing Checklist to secure your personal information."
+        }
+      },
+      "account-hacking": {
+        guidance: {
+          title: "Repeated Account Compromise",
+          content: "Multiple account breaches suggest systematic targeting or poor security practices.",
+          immediateActions: [
+            "Change passwords on ALL accounts immediately",
+            "Enable two-factor authentication everywhere",
+            "Check for monitoring software on your devices",
+            "Review account recovery methods",
+            "Consider if someone has access to your primary email"
+          ],
+          nextSteps: "Follow our Complete Account Security Audit to prevent future breaches."
+        }
+      },
+      "impersonation": {
+        guidance: {
+          title: "Account Impersonation",
+          content: "Someone creating fake accounts pretending to be you is serious identity theft.",
+          immediateActions: [
+            "Report impersonation accounts to platforms immediately",
+            "Screenshot fake profiles as evidence",
+            "Alert friends and family about impersonation",
+            "Monitor search results for your name",
+            "Consider reporting to police if serious harm"
+          ],
+          nextSteps: "Use our Identity Protection Checklist to prevent future impersonation."
+        }
+      },
+      "privacy-settings": {
+        guidance: {
+          title: "Social Media Privacy Review",
+          content: "Regularly reviewing privacy settings is essential for digital safety.",
+          immediateActions: [
+            "Set all profiles to private/friends only",
+            "Remove personal information from public view",
+            "Review who can find you by email/phone",
+            "Turn off location sharing and geotagging",
+            "Limit who can see your friends list"
+          ],
+          nextSteps: "Complete our Social Media Privacy Checklist for comprehensive protection."
+        }
+      },
+      "persistent-contact": {
+        guidance: {
+          title: "Continued Contact After Blocking",
+          content: "Circumventing blocks to continue contact is harassment and stalking behavior.",
+          immediateActions: [
+            "Document all attempts to contact you",
+            "Report new accounts to platforms",
+            "Block new accounts immediately",
+            "Save screenshots of all harassment",
+            "Consider reporting to authorities"
+          ],
+          nextSteps: "Follow our Persistent Harassment Documentation process and consider legal action."
+        }
+      },
+      "image-abuse": {
+        guidance: {
+          title: "Non-Consensual Image Sharing",
+          content: "Sharing intimate images without consent is illegal in many places and deeply harmful.",
+          immediateActions: [
+            "Document where images are posted",
+            "Report to platforms immediately for removal",
+            "Contact a specialized helpline for support",
+            "Consider legal action - this may be criminal",
+            "Reach out to trusted friends for emotional support"
+          ],
+          nextSteps: "Contact specialized legal and emotional support services for this serious violation."
+        }
+      },
+      "fake-accounts": {
+        guidance: {
+          title: "Fake Accounts for Contact",
+          content: "Creating fake accounts to contact someone is stalking behavior.",
+          immediateActions: [
+            "Report all fake accounts to platforms",
+            "Block accounts immediately",
+            "Screenshot evidence of fake accounts",
+            "Consider making your accounts more private",
+            "Alert trusted contacts about fake accounts"
+          ],
+          nextSteps: "Document this pattern and consider reporting to authorities for stalking."
         }
       }
     }

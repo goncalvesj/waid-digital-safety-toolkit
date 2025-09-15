@@ -37,9 +37,29 @@ export function DecisionTreeFlow({ tree, onComplete, onBack }: DecisionTreeFlowP
   const [path, setPath] = useState<string[]>([tree.startNode]);
 
   const currentNode = tree.nodes[currentNodeId];
+  
+  // If the current node doesn't exist, go back to start or previous node
+  if (!currentNode) {
+    console.error(`Node ${currentNodeId} not found in tree ${tree.id}`);
+    const fallbackNodeId = path.length > 1 ? path[path.length - 2] : tree.startNode;
+    if (fallbackNodeId !== currentNodeId) {
+      setCurrentNodeId(fallbackNodeId);
+      setPath(prev => prev.slice(0, -1));
+      return null;
+    }
+    // If even the fallback fails, return to menu
+    onBack();
+    return null;
+  }
+  
   const progress = currentNode.guidance ? 100 : (path.length / (Object.keys(tree.nodes).length * 0.6)) * 100;
 
   const handleOptionSelect = (nextNodeId: string) => {
+    // Check if the next node exists before navigating
+    if (!tree.nodes[nextNodeId]) {
+      console.error(`Target node ${nextNodeId} not found in tree ${tree.id}`);
+      return;
+    }
     setCurrentNodeId(nextNodeId);
     setPath(prev => [...prev, nextNodeId]);
   };
