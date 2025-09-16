@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Toaster } from "@/components/ui/sonner";
 import { QuickExitButton } from '@/components/QuickExitButton';
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
 import { MainMenu } from '@/components/MainMenu';
 import { DecisionTreeFlow } from '@/components/DecisionTreeFlow';
 import { ChatInterface } from '@/components/ChatInterface';
@@ -66,17 +68,20 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="fixed top-4 right-4 z-50">
-        <QuickExitButton />
+    <div className="min-h-screen bg-background flex flex-col">
+      <Header />
+      {/* Fixed Quick Exit button (persistent & accessible) */}
+      <div
+        className="fixed z-50 top-1/2 -translate-y-1/2 right-2 sm:right-3 md:right-4 lg:right-6 flex flex-col items-center"
+        role="complementary"
+        aria-label="Quick exit control"
+      >
+        <QuickExitButton vertical className="shadow-lg" />
       </div>
-      
-      <div className="container mx-auto px-4 py-8 pb-20 max-w-4xl">
-        <div className="pt-16">
-          {renderCurrentView()}
-        </div>
-      </div>
-      
+      <main className="container mx-auto px-4 py-10 pb-12 max-w-4xl flex-1">
+        {renderCurrentView()}
+      </main>
+      <Footer />
       <Toaster />
     </div>
   );
