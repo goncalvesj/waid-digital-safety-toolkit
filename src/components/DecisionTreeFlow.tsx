@@ -120,7 +120,19 @@ export function DecisionTreeFlow({ tree, onComplete, onBack }: DecisionTreeFlowP
               </p>
             </div>
 
-            <div className="flex gap-3 pt-4">
+            <div className="flex flex-col gap-3 pt-4">
+              <Button
+                asChild
+                variant="destructive"
+                className="w-full font-semibold"
+              >
+                <a
+                  href="tel:1800341900"
+                  aria-label="Call Women's Aid National Freephone Helpline on 1 800 341 900 (opens your phone dialer)"
+                >
+                  Call Women's Aid 1800 341 900
+                </a>
+              </Button>
               <Button
                 variant="outline"
                 onClick={() => onBack()}

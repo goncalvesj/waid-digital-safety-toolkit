@@ -3,7 +3,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { ArrowLeft, PaperPlaneTilt, ChatCircleDots, Robot, User, Gear } from '@phosphor-icons/react';
+// Switched from deprecated Phosphor icons to maintained Lucide icons
+import { ArrowLeft, Send, MessageCircleMore, Bot, User, Settings, PhoneCall } from 'lucide-react';
 import { toast } from 'sonner';
 import { azureAIService, initializeAzureAI } from '@/lib/azureAI';
 
@@ -22,7 +23,7 @@ export function ChatInterface({ onBack }: ChatInterfaceProps) {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      content: "Hello! I'm here to provide confidential guidance on digital safety and online abuse. Your privacy is my priority - this conversation is not stored or tracked. How can I help you today?",
+      content: "Hi, I'm your digital safety assistant. You can speak to me just like you would to a trusted, informed friend. Nothing you type here is saved or stored anywhere. Whether you're worried about someone checking your phone, accounts feeling unsafe, or something else that's on your mind—I'm here to help. What would you like to talk about first?",
       sender: 'assistant',
       timestamp: new Date()
     }
@@ -133,10 +134,10 @@ export function ChatInterface({ onBack }: ChatInterfaceProps) {
         <CardHeader className="pb-4">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-              <ChatCircleDots size={20} className="text-primary" />
+              <MessageCircleMore size={20} className="text-primary" />
             </div>
             <div className="flex-1">
-              <CardTitle className="text-xl">Digital Safety Assistant</CardTitle>
+              <CardTitle className="text-xl">Private safety chat</CardTitle>
               <div className="flex items-center gap-2 mt-1">
                 <p className="text-sm text-muted-foreground">
                   Private, confidential guidance for digital safety concerns
@@ -146,7 +147,7 @@ export function ChatInterface({ onBack }: ChatInterfaceProps) {
             </div>
             {!isConfigured && (
               <div className="text-xs text-muted-foreground flex items-center gap-1">
-                <Gear size={12} />
+                <Settings size={12} />
                 Offline Mode
               </div>
             )}
@@ -160,11 +161,20 @@ export function ChatInterface({ onBack }: ChatInterfaceProps) {
                 <span className="text-destructive text-xs font-bold">!</span>
               </div>
               <div className="text-sm">
-                <p className="font-medium text-foreground mb-1">Privacy Notice:</p>
-                <p className="text-muted-foreground">
-                  This chat is private and secure. Your messages are not stored locally or tracked. 
-                  If you're in immediate danger, contact emergency services or Women's Aid: 1800 341 900.
+                <p className="font-medium text-foreground mb-1">You're safe to chat here</p>
+                <p className="text-muted-foreground leading-relaxed">
+                  Nothing you write is saved or stored. If someone might be watching, you can use the Quick Exit at any time. If you are in immediate danger, call emergency services (999) or tap the helpline below for Women's Aid (24/7 confidential support).
                 </p>
+                <div className="mt-3">
+                  <a
+                    href="tel:1800341900"
+                    className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-destructive/10 text-destructive font-semibold text-sm hover:bg-destructive/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-destructive transition-colors"
+                    aria-label="Call Women's Aid National Freephone Helpline on 1 800 341 900 (opens phone dialer)"
+                  >
+                    <PhoneCall size={16} />
+                    Women's Aid 1800 341 900
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -181,7 +191,7 @@ export function ChatInterface({ onBack }: ChatInterfaceProps) {
                   >
                     {message.sender === 'assistant' && (
                       <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <Robot size={16} className="text-primary" />
+                        <Bot size={16} className="text-primary" />
                       </div>
                     )}
                     
@@ -216,7 +226,7 @@ export function ChatInterface({ onBack }: ChatInterfaceProps) {
                 {isLoading && (
                   <div className="flex gap-3 justify-start">
                     <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <Robot size={16} className="text-primary" />
+                      <Bot size={16} className="text-primary" />
                     </div>
                     <div className="bg-muted border p-3 rounded-lg">
                       <div className="flex gap-1">
@@ -236,7 +246,7 @@ export function ChatInterface({ onBack }: ChatInterfaceProps) {
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  placeholder="Type your message... (Press Enter to send)"
+                  placeholder="Type whatever's on your mind... (Press Enter to send)"
                   disabled={isLoading}
                   className="flex-1"
                 />
@@ -245,11 +255,11 @@ export function ChatInterface({ onBack }: ChatInterfaceProps) {
                   disabled={!inputValue.trim() || isLoading}
                   size="icon"
                 >
-                  <PaperPlaneTilt size={16} />
+                  <Send size={16} />
                 </Button>
               </div>
-              <p className="text-xs text-muted-foreground mt-2">
-                Your privacy is protected. This conversation is not stored or tracked.
+              <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
+                I don't keep history. For sensitive steps (like changing passwords) consider using a device the abuser can't access.
               </p>
             </div>
           </Card>
