@@ -1,0 +1,69 @@
+/* Custom styles for ReactMarkdown components in chat interface */
+
+.markdown-content {
+  color: inherit;
+}
+
+.markdown-content ul {
+  list-style-type: disc;
+  list-style-position: outside;
+  margin-left: 1rem;
+  padding-left: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-content ol {
+  list-style-type: decimal;
+  list-style-position: outside;
+  margin-left: 1rem;
+  padding-left: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-content li {
+  display: list-item;
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+  padding-left: 0.25rem;
+}
+
+.markdown-content li::marker {
+  color: inherit;
+}
+
+.markdown-content p {
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.markdown-content p:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-content strong {
+  font-weight: 600;
+}
+
+.markdown-content em {
+  font-style: italic;
+}
+
+/* Ensure bullet points are visible */
+.markdown-content ul li::before {
+  content: none;
+}
+
+.markdown-content ol li::before {
+  content: none;
+}
+
+/* Fix for nested lists */
+.markdown-content ul ul,
+.markdown-content ol ol,
+.markdown-content ul ol,
+.markdown-content ol ul {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}

@@ -45,17 +45,20 @@ class AzureAIService {
 RESPONSE FORMATTING:
 Use markdown formatting to make your guidance clear and scannable:
 - Use **bold** for immediate action items and important warnings
-- Use bullet points (•) for lists of steps or options
+- Use proper markdown bullet points (-) for lists of steps or options
 - Use *italics* for emphasis on safety concerns
 - Structure responses with clear sections when providing multiple types of guidance
 - Keep paragraphs short and focused
+- Always use proper markdown list syntax with line breaks
 
 Example response format:
 **Immediate Safety Steps:**
-• Use private browsing mode when safe to do so
-• Change passwords from a trusted device
+
+- Use private browsing mode when safe to do so
+- Change passwords from a trusted device
 
 **Next Steps:**
+
 Contact Women's Aid: **1800 341 900** for ongoing support.
 
 **Remember:** Your safety comes first.

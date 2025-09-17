@@ -8,6 +8,7 @@ import { ArrowLeft, Send, MessageCircleMore, Bot, User, Settings, PhoneCall } fr
 import { toast } from 'sonner';
 import { azureAIService, initializeAzureAI } from '@/lib/azureAI';
 import ReactMarkdown from 'react-markdown';
+import '@/styles/markdown.css';
 
 interface Message {
   id: string;
@@ -204,17 +205,8 @@ export function ChatInterface({ onBack }: ChatInterfaceProps) {
                       }`}
                     >
                       {message.sender === 'assistant' ? (
-                        <div className="text-sm">
-                          <ReactMarkdown 
-                            components={{
-                              // Customize markdown rendering for safety context
-                              strong: ({children}) => <span className="font-semibold text-foreground">{children}</span>,
-                              em: ({children}) => <span className="italic">{children}</span>,
-                              ul: ({children}) => <ul className="list-disc list-inside space-y-1 my-2">{children}</ul>,
-                              li: ({children}) => <li className="text-sm">{children}</li>,
-                              p: ({children}) => <p className="text-sm mb-2 last:mb-0">{children}</p>,
-                            }}
-                          >
+                        <div className="markdown-content text-sm">
+                          <ReactMarkdown>
                             {message.content}
                           </ReactMarkdown>
                         </div>
