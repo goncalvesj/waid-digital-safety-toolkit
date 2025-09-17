@@ -7,6 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { ArrowLeft, Send, MessageCircleMore, Bot, User, Settings, PhoneCall } from 'lucide-react';
 import { toast } from 'sonner';
 import { azureAIService, initializeAzureAI } from '@/lib/azureAI';
+import ReactMarkdown from 'react-markdown';
 
 interface Message {
   id: string;
@@ -202,7 +203,26 @@ export function ChatInterface({ onBack }: ChatInterfaceProps) {
                           : 'bg-muted border'
                       }`}
                     >
-                      <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                      {message.sender === 'assistant' ? (
+                        <div className="text-sm">
+                          <ReactMarkdown 
+                            components={{
+                              // Customize markdown rendering for safety context
+                              strong: ({children}) => <span className="font-semibold text-foreground">{children}</span>,
+                              em: ({children}) => <span className="italic">{children}</span>,
+                              ul: ({children}) => <ul className="list-disc list-inside space-y-1 my-2">{children}</ul>,
+                              li: ({children}) => <li className="text-sm">{children}</li>,
+                              p: ({children}) => <p className="text-sm mb-2 last:mb-0">{children}</p>,
+                            }}
+                          >
+                            {message.content}
+                          </ReactMarkdown>
+                        </div>
+                      ) : (
+                        <p className="text-sm whitespace-pre-wrap break-words text-primary-foreground">
+                          {message.content}
+                        </p>
+                      )}
                       <p className={`text-xs mt-2 ${
                         message.sender === 'user' 
                           ? 'text-primary-foreground/70' 
@@ -274,12 +294,12 @@ function generateMockResponse(userMessage: string): string {
   const lowerMessage = userMessage.toLowerCase();
   
   if (lowerMessage.includes('spyware') || lowerMessage.includes('monitoring') || lowerMessage.includes('tracking')) {
-    return `I understand your concern about potential monitoring. Here are some immediate steps:
+    return `I understand your concern about potential monitoring. Here are some **immediate steps**:
 
-• If you suspect spyware, use a different device (at a library, friend's house, or public computer) for sensitive communications
-• Don't search for "spyware removal" on the suspected device as this might alert the person monitoring
-• Consider preserving the device as evidence if you plan to involve authorities
-• For immediate safety: Women's Aid Helpline 1800 341 900 (24/7)
+- If you suspect spyware, use a different device (at a library, friend's house, or public computer) for sensitive communications
+- Don't search for "spyware removal" on the suspected device as this might alert the person monitoring
+- Consider preserving the device as evidence if you plan to involve authorities
+- For immediate safety: **Women's Aid Helpline 1800 341 900 (24/7)**
 
 Your safety is the priority. Would you like specific guidance on any of these steps?`;
   }
@@ -287,11 +307,12 @@ Your safety is the priority. Would you like specific guidance on any of these st
   if (lowerMessage.includes('hack') || lowerMessage.includes('password') || lowerMessage.includes('account')) {
     return `If you think your accounts have been compromised:
 
-• Change passwords immediately using a secure device
-• Enable two-factor authentication where possible
-• Check recent login activity in your account settings
-• Inform trusted contacts that your account may have been compromised
-• Use different, strong passwords for each account
+**Immediate Actions:**
+- Change passwords immediately using a secure device
+- Enable two-factor authentication where possible
+- Check recent login activity in your account settings
+- Inform trusted contacts that your account may have been compromised
+- Use different, strong passwords for each account
 
 Would you like me to walk you through securing any specific type of account?`;
   }
@@ -299,11 +320,12 @@ Would you like me to walk you through securing any specific type of account?`;
   if (lowerMessage.includes('image') || lowerMessage.includes('photo') || lowerMessage.includes('video') || lowerMessage.includes('intimate')) {
     return `I'm sorry this has happened to you. Image-based sexual abuse is a crime in Ireland:
 
-• Report to hotline.ie for intimate image abuse
-• Report the content on the platform where it appears
-• Take screenshots as evidence (include URLs)
-• Contact An Garda Síochána as this is a criminal matter
-• Women's Aid can provide ongoing support: 1800 341 900
+**Immediate Steps:**
+- Report to hotline.ie for intimate image abuse
+- Report the content on the platform where it appears
+- Take screenshots as evidence (include URLs)
+- Contact An Garda Síochána as this is a criminal matter
+- **Women's Aid** can provide ongoing support: **1800 341 900**
 
 You have rights under data protection law to request removal. Would you like specific guidance on any of these steps?`;
   }
@@ -311,11 +333,12 @@ You have rights under data protection law to request removal. Would you like spe
   if (lowerMessage.includes('social media') || lowerMessage.includes('facebook') || lowerMessage.includes('instagram')) {
     return `Here are key privacy settings for social media safety:
 
-• Make your profiles private so only approved followers can see your content
-• Review and remove followers you don't trust
-• Turn off location sharing and activity status
-• Use blocking features for abusive contacts
-• Regularly review your privacy settings as platforms change them
+**Privacy Steps:**
+- Make your profiles private so only approved followers can see your content
+- Review and remove followers you don't trust
+- Turn off location sharing and activity status
+- Use blocking features for abusive contacts
+- Regularly review your privacy settings as platforms change them
 
 Which social media platform would you like specific guidance for?`;
   }
@@ -323,23 +346,27 @@ Which social media platform would you like specific guidance for?`;
   if (lowerMessage.includes('harassment') || lowerMessage.includes('abuse') || lowerMessage.includes('threat')) {
     return `Online harassment is serious and you don't have to face it alone:
 
-• Document everything - take screenshots with timestamps
-• Report abusive content using platform tools
-• Block the harassing accounts
-• If threats involve violence, contact Gardaí immediately
-• Women's Aid provides specialized support: 1800 341 900
+**Documentation Steps:**
+- Document everything - take screenshots with timestamps
+- Report abusive content using platform tools
+- Block the harassing accounts
+- If threats involve violence, contact Gardaí immediately
+- **Women's Aid** provides specialized support: **1800 341 900**
 
-Remember: this is not your fault, and help is available. Would you like guidance on documenting evidence or using platform reporting tools?`;
+*Remember: this is not your fault, and help is available.* Would you like guidance on documenting evidence or using platform reporting tools?`;
   }
   
   return `Thank you for reaching out. I'm here to help with digital safety concerns including:
 
-• Account security and password protection
-• Privacy settings on social media
-• Dealing with online harassment
-• Spyware and monitoring concerns
-• Image-based abuse
-• Safe internet and phone usage
+**Areas I can help with:**
+- Account security and password protection
+- Privacy settings on social media
+- Dealing with online harassment
+- Spyware and monitoring concerns
+- Image-based abuse
+- Safe internet and phone usage
 
-Could you tell me more about your specific situation so I can provide the most relevant guidance? Remember, if you're in immediate danger, contact emergency services or Women's Aid: 1800 341 900.`;
+Could you tell me more about your specific situation so I can provide the most relevant guidance? 
+
+*Remember, if you're in immediate danger, contact emergency services or Women's Aid: **1800 341 900**.*`;
 }
