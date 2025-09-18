@@ -115,9 +115,35 @@ export function DecisionTreeFlow({ tree, onComplete, onBack }: DecisionTreeFlowP
             </div>
 
             <div className="pt-4 border-t">
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-muted-foreground mb-3">
                 <strong>Next Steps:</strong> {currentNode.guidance.nextSteps}
               </p>
+              <div className="space-y-3 mt-2">
+                <p className="text-sm leading-relaxed">
+                  <strong className="font-semibold">Digital safety guide:</strong>{' '}
+                  <a
+                    href="https://www.womensaid.ie/get-help/your-rights-options/digital-safety/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-2 decoration-primary/60 hover:decoration-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary rounded-sm"
+                    aria-label="Open Women's Aid detailed guidance on staying safe online (opens in new tab)"
+                  >
+                    practical steps to secure devices, accounts & privacy online
+                  </a>.
+                </p>
+                <p className="text-sm leading-relaxed">
+                  <strong className="font-semibold">All support & services:</strong>{' '}
+                  <a
+                    href="https://www.womensaid.ie/get-help/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-2 decoration-primary/60 hover:decoration-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary rounded-sm"
+                    aria-label="Open Women's Aid page listing helpline, refuge, legal information and specialist supports (opens in new tab)"
+                  >
+                    explore helpline, refuge, legal info & specialist supports
+                  </a>.
+                </p>
+              </div>
             </div>
 
             <div className="flex flex-col gap-3 pt-4">

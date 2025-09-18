@@ -812,10 +812,9 @@ export const decisionTrees = {
       "image-threats": {
         guidance: {
           title: "Threats to Share Intimate Images",
-          content: "Threatening to share intimate images is blackmail and a serious crime. You don't have to give in to these threats.",
+          content: "Threatening to share intimate images is blackmail and a serious crime.",
           immediateActions: [
             "Screenshot all threats as evidence",
-            "Do NOT give in to any demands - this rarely stops the behavior",
             "Block the person making threats on all platforms",
             "Report the threats to Gardaí - blackmail is a serious crime",
             "Reach out for support - you're not alone in this"
