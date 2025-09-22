@@ -75,6 +75,21 @@ export function DecisionTreeFlow({ tree, onComplete, onBack }: DecisionTreeFlowP
   };
 
   if (currentNode.guidance) {
+    // Derive a bullet list for next steps using simple heuristics so we can style like Immediate Actions
+    let nextStepsList: string[] = [];
+    if (currentNode.guidance.nextSteps) {
+      const raw = currentNode.guidance.nextSteps.trim();
+      if (raw.includes('\n')) {
+        nextStepsList = raw.split('\n').map(s => s.trim()).filter(Boolean);
+      } else if (raw.includes('•')) {
+        nextStepsList = raw.split('•').map(s => s.trim()).filter(Boolean);
+      } else if (/\.\s+/.test(raw)) {
+        // Split into sentences and re-add period for readability
+        nextStepsList = raw.split(/\.\s+/).map(s => s.trim()).filter(Boolean).map(s => s.endsWith('.') ? s : s + '.');
+      } else if (raw.length) {
+        nextStepsList = [raw];
+      }
+    }
     return (
       <div className="space-y-6">
         <div className="flex items-center justify-between">
@@ -115,9 +130,15 @@ export function DecisionTreeFlow({ tree, onComplete, onBack }: DecisionTreeFlowP
             </div>
 
             <div className="pt-4 border-t">
-              <p className="text-sm text-muted-foreground mb-3">
-                <strong>Next Steps:</strong> {currentNode.guidance.nextSteps}
-              </p>
+              <h4 className="font-semibold text-destructive mb-3">Next Steps:</h4>
+              <ul className="space-y-2 mb-4">
+                {nextStepsList.map((step, index) => (
+                  <li key={index} className="flex items-start gap-2">
+                    <span className="text-destructive font-bold text-lg leading-none mt-1">•</span>
+                    <span className="text-sm leading-relaxed">{step}</span>
+                  </li>
+                ))}
+              </ul>
               <div className="space-y-3 mt-2">
                 <p className="text-sm leading-relaxed">
                   <strong className="font-semibold">Digital safety guide:</strong>{' '}

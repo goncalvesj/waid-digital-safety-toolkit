@@ -1688,3 +1688,15 @@ export const decisionTrees = {
     }
   }
 };
+
+// Standardize all guidance nextSteps text across every outcome
+const STANDARD_NEXT_STEPS = "Contact Women's Aid (1800 341 900) for confidential support and safety planning. Use our Digital Safety Guide when you can access it safely.";
+
+Object.values(decisionTrees).forEach((tree: any) => {
+  if (!tree?.nodes) return;
+  Object.values(tree.nodes).forEach((node: any) => {
+    if (node && node.guidance) {
+      node.guidance.nextSteps = STANDARD_NEXT_STEPS;
+    }
+  });
+});
