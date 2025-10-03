@@ -54,7 +54,7 @@ export function MainMenu({ onSelectDecisionTree, onOpenChat }: MainMenuProps) {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2">
             {/* Urgent Help */}
             <Card
               className="group cursor-pointer border-destructive/30 bg-gradient-to-b from-destructive/5 to-destructive/10 hover:shadow-md transition focus:outline-none focus-visible:ring-2 focus-visible:ring-destructive/50 flex flex-col"
@@ -106,7 +106,8 @@ export function MainMenu({ onSelectDecisionTree, onOpenChat }: MainMenuProps) {
               </CardContent>
             </Card>
 
-            {/* AI Assistant */}
+            {/*
+            AI Assistant (commented out)
             <Card
               className="group cursor-pointer border-accent/30 bg-gradient-to-b from-accent/5 to-accent/10 hover:shadow-md transition focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 flex flex-col"
               role="button"
@@ -130,6 +131,7 @@ export function MainMenu({ onSelectDecisionTree, onOpenChat }: MainMenuProps) {
                 </div>
               </CardContent>
             </Card>
+            */}
           </div>
           <p className="text-xs text-muted-foreground text-center mt-10">
             All our services are free, confidential, and available to all women.
