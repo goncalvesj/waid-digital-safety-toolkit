@@ -6,13 +6,22 @@ This document explains how to configure the Azure AI Agent integration for the W
 
 Create a `.env.local` file in the project root with the following variables:
 
+```bash
+# Copy .env.example to .env.local and fill in your values
+cp .env.example .env.local
+```
+
+Then edit `.env.local` with your actual Azure credentials:
+
 ```env
 # Azure OpenAI Configuration
-VITE_AZURE_OPENAI_ENDPOINT=https://your-resource-name.openai.azure.com
+VITE_AZURE_OPENAI_ENDPOINT=https://your-resource-name.cognitiveservices.azure.com/
 VITE_AZURE_OPENAI_API_KEY=your-api-key-here
-VITE_AZURE_OPENAI_DEPLOYMENT_NAME=gpt-4
-VITE_AZURE_OPENAI_API_VERSION=2024-02-15-preview
+VITE_AZURE_OPENAI_DEPLOYMENT_NAME=gpt-4.1
+VITE_AZURE_OPENAI_API_VERSION=2024-04-01-preview
 ```
+
+**⚠️ IMPORTANT:** Never commit `.env.local` to version control! The `.gitignore` file is configured to exclude it.
 
 ## Azure Setup Required
 

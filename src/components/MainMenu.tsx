@@ -21,6 +21,32 @@ export function MainMenu({ onSelectDecisionTree, onOpenChat }: MainMenuProps) {
 
   return (
     <div className="space-y-12">
+      {/* Hackathon Disclaimer */}
+      <div className="bg-slate-100 dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-600 rounded-lg p-4 md:p-6">
+        <div className="flex items-start gap-3">
+          <Warning size={24} className="text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" weight="fill" />
+          <div className="text-sm space-y-2">
+            <p className="font-bold text-slate-900 dark:text-slate-100 text-base">
+              ⚠️ Important: This is a Hackathon Project
+            </p>
+            <p className="text-slate-700 dark:text-slate-200 leading-relaxed">
+              This website is <strong>NOT the official Woman's Aid Ireland website</strong>. It was created as an independent prototype during a hackathon for educational and demonstration purposes only. This is not affiliated with, endorsed by, or part of the official Woman's Aid Ireland organization.
+            </p>
+            <p className="text-slate-700 dark:text-slate-200 leading-relaxed">
+              <strong>For official resources and professional support, please contact:</strong>
+            </p>
+            <ul className="list-disc list-inside space-y-1 text-slate-700 dark:text-slate-200 ml-2">
+              <li>
+                Woman's Aid Ireland: <a href="tel:1800341900" className="font-bold underline hover:no-underline">1800 341 900</a> (24/7 National Freephone Helpline)
+              </li>
+              <li>
+                Emergency Services: <strong>999 or 112</strong>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       {/* Hero Section */}
       <div className="text-center max-w-3xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-6">
